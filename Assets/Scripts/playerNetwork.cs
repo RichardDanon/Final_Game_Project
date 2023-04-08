@@ -5,14 +5,24 @@ public class playerNetwork : NetworkBehaviour
 {
 
     //22 minutes in the video, if we need more stuff
+    [SerializeField]
+    private GameObject ball;
 
+    [SerializeField]
+    private NetworkVariable<float> speed = new NetworkVariable<float>(10f);
 
     private Rigidbody2D rb2d;
 
     // Start is called before the first frame update
     void Start()
+
     {
+
+        SpriteRenderer sprite = ball.GetComponent<SpriteRenderer>();
+        sprite.color = Random.ColorHSV();
+
         rb2d = gameObject.GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
@@ -23,7 +33,13 @@ public class playerNetwork : NetworkBehaviour
         {
             Vector2 move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-            rb2d.MovePosition(rb2d.position + (move * 10 * Time.deltaTime));
+            rb2d.MovePosition(rb2d.position + (move * speed.Value * Time.deltaTime));
+
         }
+    }
+
+    private void ChangeScene()
+    {
+
     }
 }
