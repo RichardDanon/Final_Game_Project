@@ -33,11 +33,13 @@ public class hitBall : NetworkBehaviour
 
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (IsOwner)
         {
-
+            Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.gameObject.transform.position;
+            float dist = Mathf.Clamp(Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)), 0, maxDragLength);
+            Vector2 endPos = (Vector2)transform.position + (dir.normalized * dist);
 
             if (rb2d.velocity.magnitude < 0.05f)
             {
@@ -52,9 +54,7 @@ public class hitBall : NetworkBehaviour
             if (!isMoving)
             {
 
-                Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-                float dist = Mathf.Clamp(Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)), 0, maxDragLength);
-                Vector3 endPos = (Vector2)transform.position + (dir.normalized * dist);
+
                 lineRenderer.SetPosition(1, endPos);
 
 
@@ -64,8 +64,9 @@ public class hitBall : NetworkBehaviour
 
                 if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
                 {
-                    float force = (Vector2.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.position) * 100 / maxDragLength);
-                    rb2d.AddForce(-(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position) * force * 10);
+                    float force = (Vector2.Distance(this.gameObject.transform.position, endPos) * 100 / maxDragLength);
+
+                    rb2d.AddForce(-(endPos - (Vector2)transform.position).normalized * force * 5);
                 }
             }
 
