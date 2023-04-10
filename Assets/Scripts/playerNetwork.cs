@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -13,7 +12,6 @@ public class playerNetwork : NetworkBehaviour
     private NetworkVariable<float> speed = new NetworkVariable<float>(10f);
 
 
-    private NetworkVariable<Dictionary<ulong, Color>> playerColors = new NetworkVariable<Dictionary<ulong, Color>>();
 
 
     private Rigidbody2D rb2d;
@@ -34,13 +32,7 @@ public class playerNetwork : NetworkBehaviour
     void Update()
     {
 
-        if (IsOwner)
-        {
-            Vector2 move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-            rb2d.MovePosition(rb2d.position + (move * speed.Value * Time.deltaTime));
-
-        }
     }
 
     private void ChangeScene()

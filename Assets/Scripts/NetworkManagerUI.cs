@@ -15,7 +15,6 @@ public class NetworkManagerUI : MonoBehaviour
     private InputField ip;
 
 
-    bool connected = false;
     private void Awake()
     {
         hostBtn.onClick.AddListener(() =>
