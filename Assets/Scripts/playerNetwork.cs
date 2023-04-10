@@ -1,15 +1,20 @@
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
 public class playerNetwork : NetworkBehaviour
 {
 
-    //22 minutes in the video, if we need more stuff
+    //Variables
     [SerializeField]
     private GameObject ball;
 
     [SerializeField]
     private NetworkVariable<float> speed = new NetworkVariable<float>(10f);
+
+
+    private NetworkVariable<Dictionary<ulong, Color>> playerColors = new NetworkVariable<Dictionary<ulong, Color>>();
+
 
     private Rigidbody2D rb2d;
 
