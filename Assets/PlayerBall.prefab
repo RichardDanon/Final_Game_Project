@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -6218454082835696036}
   - component: {fileID: 2090972054264107002}
   - component: {fileID: 2750750802292626163}
+  - component: {fileID: 4893847844550382018}
   m_Layer: 0
   m_Name: PlayerBall
   m_TagString: Untagged
@@ -133,7 +134,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742ace953d6ede547b1eeaf281d84464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMoving: 0
+  maxDragLength: 3
+--- !u!58 &4893847844550382018
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995631911048754409}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.000000029802322, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.19753954
 --- !u!1 &1995631911514962973
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +196,7 @@ Transform:
   m_GameObject: {fileID: 1995631911514962973}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3951, y: 0.3951, z: 0.3951}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1995631911048754410}
