@@ -13,30 +13,36 @@ public class hitBall : NetworkBehaviour
 
     LineRenderer lineRenderer;
 
-
+    [SerializeField]
+    private Material lineMaterial;
 
 
 
     private void Start()
     {
+
         rb2d = gameObject.GetComponent<Rigidbody2D>();
 
+        if (IsLocalPlayer)
+        {
+            lineRenderer = this.gameObject.AddComponent<LineRenderer>();
+            //This does not work in the build version: I am guessing it's because it 
+            //does not have acess to the Shaders library
+            //lineRenderer.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
 
-        lineRenderer = this.gameObject.GetComponent<LineRenderer>();
-        //This does not work in the build version: I am guessing it's because it 
-        //does not have acess to the Shaders library
-        //lineRenderer.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
-        lineRenderer.startColor = Color.red;
-        lineRenderer.endColor = Color.green;
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
+            lineRenderer.material = new Material(lineMaterial);
+            lineRenderer.startColor = Color.red;
+            lineRenderer.endColor = Color.green;
+            lineRenderer.startWidth = 0.1f;
+            lineRenderer.endWidth = 0.1f;
+        }
 
 
     }
 
     private void Update()
     {
-        if (IsOwner)
+        if (IsLocalPlayer)
         {
 
             Vector2 directionOfHit = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.gameObject.transform.position;
@@ -74,5 +80,9 @@ public class hitBall : NetworkBehaviour
 
 
         }
+
+
     }
+
+
 }

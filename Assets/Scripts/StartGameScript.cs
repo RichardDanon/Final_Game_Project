@@ -9,6 +9,8 @@ public class StartGameScript : NetworkBehaviour
 
     private Button btn;
 
+    private GameObject[] btnObject;
+
     private bool isDone = false;
 
     void Start()
@@ -21,18 +23,35 @@ public class StartGameScript : NetworkBehaviour
     {
         startBtn = GameObject.FindObjectsOfType<Button>(true);
 
+
+
         foreach (Button button in startBtn)
         {
             if (button.name == "StartGameBtn")
             {
+
+
                 btn = button;
                 if (IsServer)
                 {
-                    btn.enabled = true;
+                    btnObject = GameObject.FindObjectsOfType<GameObject>(true);
+
+
+                    foreach (GameObject go in btnObject)
+                    {
+                        if (go.name.Equals("StartObject"))
+                        {
+                            go.SetActive(true);
+                        }
+                    }
+
                     btn.onClick.AddListener(() =>
                     {
                         NetworkManager.Singleton.SceneManager.LoadScene("level_01", UnityEngine.SceneManagement.LoadSceneMode.Additive);
                     });
+                    isDone = true;
+                    Debug.Log(IsServer);
+
                 }
             }
 
@@ -42,15 +61,9 @@ public class StartGameScript : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (!isDone)
-        {
-            Invoke("startGame", 2f);
-            isDone = true;
-        }
-        */
-        Debug.Log(IsServer);
 
+        if (!isDone)
+            startGame();
     }
 
 

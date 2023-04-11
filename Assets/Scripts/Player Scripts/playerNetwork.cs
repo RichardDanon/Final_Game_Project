@@ -8,8 +8,11 @@ public class playerNetwork : NetworkBehaviour
     [SerializeField]
     private GameObject ball;
 
+    private int previousLength = 0;
 
+    //private NetworkVariable<Dictionary<int, Color>> colors = new(new Dictionary<int, Color>());
 
+    private GameObject[] players;
 
 
 
@@ -19,10 +22,28 @@ public class playerNetwork : NetworkBehaviour
     {
 
         SpriteRenderer sprite = ball.GetComponent<SpriteRenderer>();
-        sprite.color = Random.ColorHSV();
-
+        Color color = Random.ColorHSV();
+        sprite.color = color;
+        //colors.Value.Add(this.GetInstanceID(), color);
 
     }
 
+    private void Update()
+    {
+        /*
+        players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length <= previousLength)
+            foreach (GameObject p in players)
+            {
+                if (colors.Value.TryGetValue(p.GetInstanceID(), out Color color))
+                {
 
+                    p.GetComponent<SpriteRenderer>().color = color;
+                }
+
+
+            }
+        previousLength = players.Length;
+        */
+    }
 }
