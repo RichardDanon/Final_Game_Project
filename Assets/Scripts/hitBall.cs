@@ -22,9 +22,10 @@ public class hitBall : NetworkBehaviour
         rb2d = gameObject.GetComponent<Rigidbody2D>();
 
 
-        lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.startWidth = lineRenderer.endWidth = 0.01f;
-        lineRenderer.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
+        lineRenderer = this.gameObject.GetComponent<LineRenderer>();
+        //This does not work in the build version: I am guessing it's because it 
+        //does not have acess to the Shaders library
+        //lineRenderer.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
         lineRenderer.startColor = Color.red;
         lineRenderer.endColor = Color.green;
         lineRenderer.startWidth = 0.1f;
@@ -37,9 +38,10 @@ public class hitBall : NetworkBehaviour
     {
         if (IsOwner)
         {
-            Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.gameObject.transform.position;
-            float dist = Mathf.Clamp(Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)), 0, maxDragLength);
-            Vector2 endPos = (Vector2)transform.position + (dir.normalized * dist);
+
+            Vector2 directionOfHit = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.gameObject.transform.position;
+            float strengthOfHit = Mathf.Clamp(Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)), 0, maxDragLength);
+            Vector2 endPos = (Vector2)transform.position + (directionOfHit.normalized * strengthOfHit);
 
             if (rb2d.velocity.magnitude < 0.05f)
             {
@@ -66,7 +68,7 @@ public class hitBall : NetworkBehaviour
                 {
                     float force = (Vector2.Distance(this.gameObject.transform.position, endPos) * 100 / maxDragLength);
 
-                    rb2d.AddForce(-(endPos - (Vector2)transform.position).normalized * force * 5);
+                    rb2d.AddForce(5 * force * -(endPos - (Vector2)transform.position).normalized);
                 }
             }
 
