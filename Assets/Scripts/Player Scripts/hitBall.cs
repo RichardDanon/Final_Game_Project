@@ -61,7 +61,6 @@ public class hitBall : NetworkBehaviour
 
 
                 lineRenderer.SetPosition(0, this.gameObject.transform.position);
-                Debug.Log("Not Moving");
 
 
                 if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
