@@ -31,10 +31,11 @@ public class hitBall : NetworkBehaviour
             //lineRenderer.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
 
             lineRenderer.material = new Material(lineMaterial);
-            lineRenderer.startColor = Color.red;
-            lineRenderer.endColor = Color.green;
-            lineRenderer.startWidth = 0.1f;
-            lineRenderer.endWidth = 0.1f;
+            lineRenderer.startColor = Color.white;
+            lineRenderer.endColor = new Color(255, 2255, 255, 0.25f);
+            lineRenderer.startWidth = 0.2f;
+            lineRenderer.endWidth = 0.01f;
+            lineRenderer.renderingLayerMask = 1;
         }
 
 

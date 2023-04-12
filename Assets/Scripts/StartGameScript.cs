@@ -13,10 +13,6 @@ public class StartGameScript : NetworkBehaviour
 
     private bool isDone = false;
 
-    void Start()
-    {
-
-    }
 
 
     private void startGame()
@@ -47,7 +43,7 @@ public class StartGameScript : NetworkBehaviour
 
                     btn.onClick.AddListener(() =>
                     {
-                        NetworkManager.Singleton.SceneManager.LoadScene("level_01", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+                        NetworkManager.Singleton.SceneManager.LoadScene("Level_01", UnityEngine.SceneManagement.LoadSceneMode.Single);
                     });
                     isDone = true;
                     Debug.Log(IsServer);
