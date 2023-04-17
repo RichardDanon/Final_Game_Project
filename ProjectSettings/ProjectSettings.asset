@@ -678,11 +678,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: af51f98b-6f6d-42f8-a73d-a9d41ea7a4af
+  cloudProjectId: 553151f6-1a12-449d-b014-cf979aadc441
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Final_Game_Project
-  organizationId: grif275
+  organizationId: richarddanon
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
