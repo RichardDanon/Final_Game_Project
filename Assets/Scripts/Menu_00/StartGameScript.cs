@@ -44,6 +44,7 @@ public class StartGameScript : NetworkBehaviour
                     btn.onClick.AddListener(() =>
                     {
                         NetworkManager.Singleton.SceneManager.LoadScene("Level_01", UnityEngine.SceneManagement.LoadSceneMode.Single);
+
                     });
                     isDone = true;
                     Debug.Log(IsServer);
