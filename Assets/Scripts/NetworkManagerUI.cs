@@ -29,9 +29,9 @@ public class NetworkManagerUI : MonoBehaviour
 
         clientBtn.onClick.AddListener(() =>
         {
-            if (ip.text != null || ip.text != "")
+            if (ip.text != null && ip.text != "")
             {
-                NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address = ip.text;
+                NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address = ip.text.Trim();
 
                 NetworkManager.Singleton.StartClient();
 
