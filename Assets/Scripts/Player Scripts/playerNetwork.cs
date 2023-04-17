@@ -29,17 +29,24 @@ public class playerNetwork : NetworkBehaviour
         };
 
 
+
         SpriteRenderer sprite = ball.GetComponent<SpriteRenderer>();
 
         sprite.color = colors[(int)OwnerClientId];
 
 
 
+
     }
 
 
-
-
+    private void Update()
+    {
+        if (IsLocalPlayer)
+        {
+            Camera.main.GetComponent<FollowPlayer>().setTarget(gameObject.transform);
+        }
+    }
 
 
 
