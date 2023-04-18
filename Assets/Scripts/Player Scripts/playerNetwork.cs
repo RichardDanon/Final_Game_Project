@@ -8,7 +8,7 @@ public class playerNetwork : NetworkBehaviour
     [SerializeField]
     private GameObject ball;
 
-
+    public bool IsLevelCompleted = false;
     void Start()
     {
 
