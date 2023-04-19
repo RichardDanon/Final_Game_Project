@@ -3,8 +3,11 @@ using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 
-public class HoleScript : MonoBehaviour
+
+public class HoleScript : NetworkBehaviour
 {
+    private NetworkVariable<int> numOfPlayersCompleted = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     [SerializeField]
     private string nextLevel = "Menu";
 
@@ -13,23 +16,15 @@ public class HoleScript : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.05f)
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.05f)
         {
-            bool allPlayersCompleted = true;
-
-            collision.GetComponent<playerNetwork>().IsLevelCompleted = true;
-
+            collision.gameObject.GetComponent<playerNetwork>().IsLevelCompleted = true;
+            numOfPlayersCompleted.Value += 1;
             List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList();
-            players.ForEach(player =>
-            {
-                if (!player.GetComponent<playerNetwork>().IsLevelCompleted)
-                {
-                    allPlayersCompleted = false;
-                    return;
-                }
-            });
 
-            if (allPlayersCompleted)
+
+
+            if (numOfPlayersCompleted.Value == players.Count)
             {
                 NetworkManager.Singleton.SceneManager.LoadScene(nextLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
             }

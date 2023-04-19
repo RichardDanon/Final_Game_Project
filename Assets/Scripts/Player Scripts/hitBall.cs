@@ -46,7 +46,7 @@ public class hitBall : NetworkBehaviour
 
         if (IsLocalPlayer)
         {
-            if (this.gameObject != null)
+            if (this.gameObject != null && Camera.main != null)
             {
                 Vector2 directionOfHit = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.gameObject.transform.position;
 
@@ -81,7 +81,7 @@ public class hitBall : NetworkBehaviour
                     {
                         float force = (Vector2.Distance(this.gameObject.transform.position, endPos) * 100 / maxDragLength);
 
-                        rb2d.AddForce(8 * force * -(endPos - (Vector2)transform.position).normalized);
+                        rb2d.AddForce(5 * force * -(endPos - (Vector2)transform.position).normalized);
                     }
                 }
 

@@ -42,7 +42,7 @@ public class playerNetwork : NetworkBehaviour
     private void Update()
     {
 
-        if (IsLocalPlayer && gameObject != null)
+        if (IsLocalPlayer && gameObject != null && Camera.main != null)
         {
 
             if (!IsLevelCompleted)
