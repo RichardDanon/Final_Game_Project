@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class StartGameScript : NetworkBehaviour
 {
 
+
     private Button[] startBtn;
 
     private Button btn;
@@ -15,7 +16,7 @@ public class StartGameScript : NetworkBehaviour
 
 
 
-    private void startGame()
+    private void StartGame()
     {
         startBtn = GameObject.FindObjectsOfType<Button>(true);
 
@@ -47,6 +48,9 @@ public class StartGameScript : NetworkBehaviour
 
                     });
                     isDone = true;
+
+
+
                     Debug.Log(IsServer);
 
                 }
@@ -60,7 +64,7 @@ public class StartGameScript : NetworkBehaviour
     {
 
         if (!isDone)
-            startGame();
+            StartGame();
     }
 
 

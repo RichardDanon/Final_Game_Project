@@ -8,9 +8,13 @@ public class NetworkManagerUI : MonoBehaviour
 {
     //Variables
     [SerializeField]
+    private Text ipText;
+    [SerializeField]
     private Button hostBtn;
     [SerializeField]
     private Button clientBtn;
+    [SerializeField]
+    private Button clientBtnCancel;
     [SerializeField]
     private InputField ip;
 
@@ -22,6 +26,7 @@ public class NetworkManagerUI : MonoBehaviour
             string hostName = Dns.GetHostName();
             string myIP = Dns.GetHostEntry(hostName).AddressList[1].ToString();
 
+            ipText.text = myIP;
             NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address = myIP; ;
 
             NetworkManager.Singleton.StartHost();
@@ -39,6 +44,11 @@ public class NetworkManagerUI : MonoBehaviour
 
             }
 
+        });
+
+        clientBtnCancel.onClick.AddListener(() =>
+        {
+            NetworkManager.Singleton.GetComponent<UnityTransport>().DisconnectLocalClient();
         });
     }
 

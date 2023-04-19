@@ -6,7 +6,6 @@ public class hitBall : NetworkBehaviour
     [SerializeField]
     private float maxDragLength = 0.1f;
 
-    public bool isMove = false;
 
     private bool isMoving;
 
@@ -42,8 +41,9 @@ public class hitBall : NetworkBehaviour
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+
         if (IsLocalPlayer)
         {
             if (this.gameObject != null)
@@ -81,7 +81,7 @@ public class hitBall : NetworkBehaviour
                     {
                         float force = (Vector2.Distance(this.gameObject.transform.position, endPos) * 100 / maxDragLength);
 
-                        rb2d.AddForce(5 * force * -(endPos - (Vector2)transform.position).normalized);
+                        rb2d.AddForce(8 * force * -(endPos - (Vector2)transform.position).normalized);
                     }
                 }
 
