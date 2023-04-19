@@ -22,13 +22,10 @@ public class HoleScript : NetworkBehaviour
             numOfPlayersCompleted.Value += 1;
             List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList();
 
-
-
             if (numOfPlayersCompleted.Value == players.Count)
             {
                 NetworkManager.Singleton.SceneManager.LoadScene(nextLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
             }
-
         }
     }
 }
