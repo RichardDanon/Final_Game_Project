@@ -89,7 +89,8 @@ public class hitBall : NetworkBehaviour
 
             }
         }
-
+        if (isMoving)
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
 
     }
 

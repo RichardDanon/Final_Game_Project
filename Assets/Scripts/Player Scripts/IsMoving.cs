@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class IsMoving : MonoBehaviour
+public class IsMoving : NetworkBehaviour
 {
     private Rigidbody2D rb2d;
 
@@ -14,13 +15,6 @@ public class IsMoving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rb2d.velocity.magnitude < 0.05f)
-        {
-            gameObject.GetComponent<Collider2D>().isTrigger = true;
-        }
-        else
-        {
-            gameObject.GetComponent<Collider2D>().isTrigger = false;
-        }
+
     }
 }
