@@ -28,7 +28,7 @@ public class onSand : MonoBehaviour
 
     private void Update()
     {
-        if (players.Count == 0)
+        if (players != null)
         {
             foreach (Rigidbody2D player in players)
             {
