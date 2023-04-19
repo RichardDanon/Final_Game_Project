@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    public Transform playerTransform;
+    public Vector3 playerTransform;
     public int depth = -1;
 
     // Update is called once per frame
@@ -10,11 +10,11 @@ public class FollowPlayer : MonoBehaviour
     {
         if (playerTransform != null)
         {
-            transform.position = playerTransform.position + new Vector3(0, 0, depth);
+            transform.position = playerTransform + new Vector3(0, 0, depth);
         }
     }
 
-    public void setTarget(Transform target)
+    public void setTarget(Vector3 target)
     {
         playerTransform = target;
     }

@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 1995631911514962973}
+  IsLevelCompleted: 0
 --- !u!50 &-6218454082835696036
 Rigidbody2D:
   serializedVersion: 4
@@ -165,7 +166,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.000000029802322, y: 0}
@@ -221,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 1995631911514962973}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3951, y: 0.3951, z: 0.3951}
+  m_LocalScale: {x: 0.28353593, y: 0.28353593, z: 0.28353593}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1995631911048754410}

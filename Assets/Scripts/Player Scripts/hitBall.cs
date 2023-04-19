@@ -45,43 +45,53 @@ public class hitBall : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
-
-            Vector2 directionOfHit = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.gameObject.transform.position;
-            float strengthOfHit = Mathf.Clamp(Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)), 0, maxDragLength);
-            Vector2 endPos = (Vector2)transform.position + (directionOfHit.normalized * strengthOfHit);
-
-            if (rb2d.velocity.magnitude < 0.05f)
+            if (this.gameObject != null)
             {
-                isMoving = false;
-            }
-            else
-            {
-                isMoving = true;
-            }
+                Vector2 directionOfHit = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.gameObject.transform.position;
 
+                float strengthOfHit = Mathf.Clamp(Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)), 0, maxDragLength);
+                Vector2 endPos = (Vector2)transform.position + (directionOfHit.normalized * strengthOfHit);
 
-            if (!isMoving)
-            {
-
-
-                lineRenderer.SetPosition(1, endPos);
-
-
-                lineRenderer.SetPosition(0, this.gameObject.transform.position);
-
-
-                if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+                if (rb2d.velocity.magnitude < 0.05f)
                 {
-                    float force = (Vector2.Distance(this.gameObject.transform.position, endPos) * 100 / maxDragLength);
-
-                    rb2d.AddForce(5 * force * -(endPos - (Vector2)transform.position).normalized);
+                    isMoving = false;
                 }
+                else
+                {
+                    isMoving = true;
+                }
+
+
+                if (!isMoving)
+                {
+
+
+                    lineRenderer.SetPosition(1, endPos);
+
+
+                    lineRenderer.SetPosition(0, this.gameObject.transform.position);
+
+
+                    if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+                    {
+                        this.gameObject.GetComponent<CircleCollider2D>().isTrigger = false;
+                        float force = (Vector2.Distance(this.gameObject.transform.position, endPos) * 100 / maxDragLength);
+
+                        rb2d.AddForce(5 * force * -(endPos - (Vector2)transform.position).normalized);
+                    }
+                }
+
+
+
             }
-
-
-
         }
-
+        if (!IsLocalPlayer)
+        {
+            if (this.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude > 0.05f)
+            {
+                this.gameObject.GetComponent<CircleCollider2D>().isTrigger = false;
+            }
+        }
 
     }
 

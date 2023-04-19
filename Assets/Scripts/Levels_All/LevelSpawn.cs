@@ -14,8 +14,8 @@ public class LevelSpawn : MonoBehaviour
         {
             player.GetComponent<playerNetwork>().IsLevelCompleted = false;
             player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            player.GetComponent<CircleCollider2D>().isTrigger = true;
             player.transform.position = new Vector2(x, y);
-            //coroutine for time of boxcollider is trigger with players only
         });
     }
 

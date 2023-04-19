@@ -8,6 +8,9 @@ public class HoleScript : MonoBehaviour
     [SerializeField]
     private string nextLevel = "Menu";
 
+    private void Update()
+    {
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.05f)

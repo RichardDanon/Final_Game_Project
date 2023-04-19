@@ -21,6 +21,7 @@ public class playerNetwork : NetworkBehaviour
              Color.magenta,
              Color.blue,
              Color.cyan,
+             Color.white,
              new Color(255F, 0F, 255F),
              new Color(0F, 255F, 255F),
              new Color(255F, 255F, 0F),
@@ -35,18 +36,32 @@ public class playerNetwork : NetworkBehaviour
         sprite.color = colors[(int)OwnerClientId];
 
 
-
-
     }
 
 
     private void Update()
     {
-        if (IsLocalPlayer)
+
+        if (IsLocalPlayer && gameObject != null)
         {
-            Camera.main.GetComponent<FollowPlayer>().setTarget(gameObject.transform);
+
+            if (!IsLevelCompleted)
+            {
+                Camera.main.GetComponent<FollowPlayer>().setTarget(gameObject.transform.position);
+            }
+            else
+            {
+                Camera.main.GetComponent<FollowPlayer>().setTarget(new Vector3(0, 0, 0));
+                this.gameObject.transform.position = new Vector3(100, 100, 0);
+            }
+
+
         }
+
+
     }
+
+
 
 
 
