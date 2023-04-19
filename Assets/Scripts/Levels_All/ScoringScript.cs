@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ScoringScript : MonoBehaviour
 {
+    [SerializeField]
+    private float score = 0.0f ;
     // Start is called before the first frame update
     void Start()
     {
