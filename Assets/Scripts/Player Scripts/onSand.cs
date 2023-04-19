@@ -10,7 +10,7 @@ public class onSand : MonoBehaviour
     // Start is called before the first frame update
 
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
