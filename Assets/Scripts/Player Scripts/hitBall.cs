@@ -6,6 +6,7 @@ public class hitBall : NetworkBehaviour
     [SerializeField]
     private float maxDragLength = 0.1f;
 
+    public bool isMove = false;
 
     private bool isMoving;
 
@@ -55,10 +56,14 @@ public class hitBall : NetworkBehaviour
                 if (rb2d.velocity.magnitude < 0.05f)
                 {
                     isMoving = false;
+                    gameObject.GetComponent<Collider2D>().isTrigger = true;
+
                 }
                 else
                 {
                     isMoving = true;
+                    gameObject.GetComponent<Collider2D>().isTrigger = false;
+
                 }
 
 
@@ -74,7 +79,6 @@ public class hitBall : NetworkBehaviour
 
                     if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
                     {
-                        this.gameObject.GetComponent<CircleCollider2D>().isTrigger = false;
                         float force = (Vector2.Distance(this.gameObject.transform.position, endPos) * 100 / maxDragLength);
 
                         rb2d.AddForce(5 * force * -(endPos - (Vector2)transform.position).normalized);
@@ -85,13 +89,7 @@ public class hitBall : NetworkBehaviour
 
             }
         }
-        if (!IsLocalPlayer)
-        {
-            if (this.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude > 0.05f)
-            {
-                this.gameObject.GetComponent<CircleCollider2D>().isTrigger = false;
-            }
-        }
+
 
     }
 

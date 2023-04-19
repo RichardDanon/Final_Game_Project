@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4893847844550382018}
   - component: {fileID: 6355361426711129424}
   - component: {fileID: -6550377583885415757}
+  - component: {fileID: 4391431335260504306}
   m_Layer: 0
   m_Name: PlayerBall
   m_TagString: Player
@@ -136,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDragLength: 3
+  isMove: 0
   lineMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!58 &4893847844550382018
 CircleCollider2D:
@@ -166,7 +168,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.000000029802322, y: 0}
@@ -194,6 +196,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4391431335260504306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995631911048754409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2b8aefe12cf31043a7b0830825f7c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1995631911514962973
