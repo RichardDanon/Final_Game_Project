@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class Water : MonoBehaviour
 {
+    [SerializeField]
+    private float x, y;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        
+        Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
+
+        if (playerRb.velocity.magnitude < 0.75f)
+        {
+            collision.transform.position = new Vector2(x, y);
+            playerRb.velocity = new Vector2(0, 0);
+        }
     }
     // Start is called before the first frame update
     void Start()
