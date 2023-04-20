@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HoleScript : NetworkBehaviour
 {
-    private NetworkVariable<int> numOfPlayersCompleted = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    private NetworkVariable<int> numOfPlayersCompleted = new NetworkVariable<int>(0);
 
     [SerializeField]
     private string nextLevel = "Menu";
@@ -17,8 +17,7 @@ public class HoleScript : NetworkBehaviour
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.25f)
         {
             collision.gameObject.GetComponent<playerNetwork>().IsLevelCompleted = true;
-            numOfPlayersCompleted.Value += 1;
-
+            IsCompleteed_ServerRPC();
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
             if (numOfPlayersCompleted.Value == players.Length)
@@ -29,4 +28,19 @@ public class HoleScript : NetworkBehaviour
             }
         }
     }
+
+
+    [ServerRpc]
+    public void IsCompleteed_ServerRPC()
+    {
+        Invoke("isCompletedIncrement", 1f);
+    }
+
+    private void isCompletedIncrement()
+    {
+        numOfPlayersCompleted.Value += 1;
+
+    }
+
+
 }
