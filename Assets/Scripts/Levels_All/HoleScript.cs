@@ -17,7 +17,11 @@ public class HoleScript : NetworkBehaviour
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.25f)
         {
             collision.gameObject.GetComponent<playerNetwork>().IsLevelCompleted = true;
-            IsCompleteed_ServerRPC();
+            if (IsClient)
+                IsCompleteed_ServerRpc();
+            else
+                numOfPlayersCompleted.Value += 1;
+
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
             if (numOfPlayersCompleted.Value == players.Length)
@@ -31,7 +35,7 @@ public class HoleScript : NetworkBehaviour
 
 
     [ServerRpc]
-    public void IsCompleteed_ServerRPC()
+    public void IsCompleteed_ServerRpc()
     {
         Invoke("isCompletedIncrement", 1f);
     }
