@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4893847844550382018}
   - component: {fileID: -6550377583885415757}
   - component: {fileID: 4391431335260504306}
+  - component: {fileID: 2318509375486358449}
   m_Layer: 0
   m_Name: PlayerBall
   m_TagString: Player
@@ -196,6 +197,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b8aefe12cf31043a7b0830825f7c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &2318509375486358449
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995631911048754409}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1995631911514962973
 GameObject:
   m_ObjectHideFlags: 0
