@@ -9,6 +9,10 @@ public class onSand : MonoBehaviour
 
     // Start is called before the first frame update
 
+    private void Start()
+    {
+        players = new List<Rigidbody2D>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,7 +36,11 @@ public class onSand : MonoBehaviour
         {
             foreach (Rigidbody2D player in players)
             {
-                player.velocity = player.velocity / 2;
+                if (player.velocity.magnitude != 0)
+                {
+                    float resistance = Mathf.Lerp(0f, 1f, player.velocity.magnitude / (player.velocity.magnitude / 1000f));
+                    player.AddForce(-player.velocity * resistance);
+                }
             }
         }
     }
