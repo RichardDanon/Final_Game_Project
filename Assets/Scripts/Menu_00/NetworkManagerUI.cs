@@ -53,13 +53,10 @@ public class NetworkManagerUI : NetworkBehaviour
 
         clientBtnCancel.onClick.AddListener(() =>
         {
-            if (IsClient)
-                NetworkManager.Singleton.GetComponent<UnityTransport>().DisconnectLocalClient();
-            else
-            {
-                NetworkManager.Singleton.Shutdown();
-                Invoke("CameraCenter", 0.1f);
-            }
+
+            NetworkManager.Singleton.Shutdown();
+            Invoke("CameraCenter", 0.1f);
+
             isClientJoined = false;
             ipText.text = string.Empty;
 
@@ -74,5 +71,10 @@ public class NetworkManagerUI : NetworkBehaviour
     {
         if (IsLocalPlayer && !isClientJoined)
             isClientJoined = true;
+        if (this.gameObject.transform.localScale != Vector3.one)
+        {
+            this.gameObject.transform.localScale = Vector3.one;
+            this.gameObject.transform.position = Vector3.zero;
+        }
     }
 }

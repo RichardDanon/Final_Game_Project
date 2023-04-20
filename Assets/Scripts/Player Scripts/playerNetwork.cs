@@ -44,7 +44,6 @@ public class playerNetwork : NetworkBehaviour
 
         if (IsLocalPlayer && gameObject != null && Camera.main != null)
         {
-
             if (!IsLevelCompleted)
             {
                 Camera.main.GetComponent<FollowPlayer>().setTarget(gameObject.transform.position);

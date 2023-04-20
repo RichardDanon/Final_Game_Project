@@ -1,5 +1,4 @@
 using Unity.Netcode;
-using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,8 +19,18 @@ public class PauseScript : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             canvas.SetActive(!canvas.activeSelf);
+            foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                if (player.GetComponent<playerNetwork>().IsLocalPlayer)
+                {
+                    player.GetComponent<hitBall>().enabled = !canvas.activeSelf;
+                }
+            }
+
 
         }
+
+
     }
 
     public void Resume()
@@ -32,14 +41,11 @@ public class PauseScript : NetworkBehaviour
 
     public void Disconnect()
     {
-        if (IsClient)
-            NetworkManager.Singleton.GetComponent<UnityTransport>().DisconnectLocalClient();
-        else
-        {
-            NetworkManager.Singleton.Shutdown();
-            SceneManager.LoadScene("Menu");
-            Invoke("CameraCenter", 0.1f);
-        }
+
+        NetworkManager.Singleton.Shutdown();
+        SceneManager.LoadScene("Menu");
+        Invoke("CameraCenter", 0.1f);
+
     }
 
     private void CameraCenter()

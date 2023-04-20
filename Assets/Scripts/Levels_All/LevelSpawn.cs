@@ -14,6 +14,7 @@ public class LevelSpawn : MonoBehaviour
         {
             player.GetComponent<playerNetwork>().IsLevelCompleted = false;
             player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            player.GetComponent<hitBall>().enabled = true;
             player.transform.position = new Vector2(x, y);
         });
     }

@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class HoleScript : NetworkBehaviour
 {
-    private NetworkVariable<int> numOfPlayersCompleted = new NetworkVariable<int>(0);
+    readonly private NetworkVariable<int> numOfPlayersCompleted = new(0);
 
     [SerializeField]
     private string nextLevel = "Menu";
 
-    private void Update()
+    private void Start()
+    {
+        numOfPlayersCompleted.Value = 0;
+        if (IsServer)
+            InvokeRepeating(nameof(ChangeLevel), 1, 1);
+    }
+    private void FixedUpdate()
     {
 
     }
@@ -17,23 +23,15 @@ public class HoleScript : NetworkBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.25f)
         {
-            if (IsLocalPlayer)
+            if (collision.gameObject.GetComponent<playerNetwork>().IsLocalPlayer)
             {
+
                 collision.gameObject.GetComponent<playerNetwork>().IsLevelCompleted = true;
 
                 IsCompleteed_ServerRpc();
 
 
-                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-                Debug.Log(numOfPlayersCompleted.Value);
-                Debug.Log(players.Length);
-                if (numOfPlayersCompleted.Value == players.Length)
-                {
 
-                    numOfPlayersCompleted.Value = 0;
-
-                    NetworkManager.Singleton.SceneManager.LoadScene(nextLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
-                }
 
             }
 
@@ -45,13 +43,33 @@ public class HoleScript : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void IsCompleteed_ServerRpc()
     {
-        Invoke("isCompletedIncrement", 1f);
+        Invoke("IsCompletedIncrement", 1f);
     }
 
-    private void isCompletedIncrement()
+    private void IsCompletedIncrement()
     {
         numOfPlayersCompleted.Value += 1;
+        Debug.Log("In isCompletedIncrement Completed : " + numOfPlayersCompleted.Value);
 
+
+    }
+
+    private void ChangeLevel()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log("Completed : " + numOfPlayersCompleted.Value);
+        Debug.Log("Players : " + players.Length);
+        Debug.Log("Completed BEFORE reset : " + numOfPlayersCompleted.Value);
+
+        if (numOfPlayersCompleted.Value == players.Length)
+        {
+            numOfPlayersCompleted.Value = 0;
+            Debug.Log("Completed after reset : " + numOfPlayersCompleted.Value);
+
+            NetworkManager.Singleton.SceneManager.LoadScene(nextLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
+
+
+        }
     }
 
 
