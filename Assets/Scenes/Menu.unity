@@ -2647,6 +2647,7 @@ MonoBehaviour:
   clientBtn: {fileID: 2007865630}
   clientBtnCancel: {fileID: 190791969}
   ip: {fileID: 121816212}
+  startBtn: {fileID: 83594559}
 --- !u!114 &1670815055
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,6 +17,8 @@ public class NetworkManagerUI : NetworkBehaviour
     private Button clientBtnCancel;
     [SerializeField]
     private InputField ip;
+    [SerializeField]
+    private GameObject startBtn;
 
 
     private bool isClientJoined = false;
@@ -56,7 +58,7 @@ public class NetworkManagerUI : NetworkBehaviour
 
             NetworkManager.Singleton.Shutdown();
             Invoke("CameraCenter", 0.1f);
-
+            startBtn.SetActive(false);
             isClientJoined = false;
             ipText.text = string.Empty;
 
