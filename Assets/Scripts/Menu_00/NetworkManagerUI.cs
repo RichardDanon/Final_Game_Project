@@ -4,7 +4,7 @@ using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NetworkManagerUI : MonoBehaviour
+public class NetworkManagerUI : NetworkBehaviour
 {
     //Variables
     [SerializeField]
@@ -48,10 +48,20 @@ public class NetworkManagerUI : MonoBehaviour
 
         clientBtnCancel.onClick.AddListener(() =>
         {
-            NetworkManager.Singleton.GetComponent<UnityTransport>().DisconnectLocalClient();
+            if (IsClient)
+                NetworkManager.Singleton.GetComponent<UnityTransport>().DisconnectLocalClient();
+            else
+            {
+                NetworkManager.Singleton.Shutdown();
+                Invoke("CameraCenter", 0.1f);
+            }
+
         });
     }
 
-
+    private void CameraCenter()
+    {
+        Camera.main.GetComponent<FollowPlayer>().setTarget(new Vector3(0, 0, 0));
+    }
 
 }
