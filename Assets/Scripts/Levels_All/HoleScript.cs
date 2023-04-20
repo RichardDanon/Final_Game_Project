@@ -15,26 +15,29 @@ public class HoleScript : NetworkBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.25f)
+        if (IsLocalPlayer)
         {
-            collision.gameObject.GetComponent<playerNetwork>().IsLevelCompleted = true;
-            if (IsClient)
-                IsCompleteed_ServerRpc();
-            else
-                numOfPlayersCompleted.Value += 1;
-
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            Debug.Log(numOfPlayersCompleted.Value);
-            Debug.Log(players.Length);
-            if (numOfPlayersCompleted.Value == players.Length)
+            if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.25f)
             {
+                collision.gameObject.GetComponent<playerNetwork>().IsLevelCompleted = true;
+                if (IsClient)
+                    IsCompleteed_ServerRpc();
+                else
+                    numOfPlayersCompleted.Value += 1;
 
-                numOfPlayersCompleted.Value = 0;
+                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                Debug.Log(numOfPlayersCompleted.Value);
+                Debug.Log(players.Length);
+                if (numOfPlayersCompleted.Value == players.Length)
+                {
 
-                NetworkManager.Singleton.SceneManager.LoadScene(nextLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
+                    numOfPlayersCompleted.Value = 0;
+
+                    NetworkManager.Singleton.SceneManager.LoadScene(nextLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
+                }
+
+
             }
-
-
         }
     }
 
