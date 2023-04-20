@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class StartGameScript : NetworkBehaviour
 {
 
+    [SerializeField]
+    private string firstLevel = "Level_01";
 
     private Button[] startBtn;
 
@@ -44,7 +46,7 @@ public class StartGameScript : NetworkBehaviour
 
                     btn.onClick.AddListener(() =>
                     {
-                        NetworkManager.Singleton.SceneManager.LoadScene("Level_01", UnityEngine.SceneManagement.LoadSceneMode.Single);
+                        NetworkManager.Singleton.SceneManager.LoadScene(firstLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
 
                     });
                     isDone = true;

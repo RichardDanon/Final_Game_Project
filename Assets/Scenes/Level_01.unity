@@ -1162,7 +1162,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1001 &1303976922
+--- !u!1001 &1470215175
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1170,17 +1170,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3777106280562498525, guid: bb2006ec8009e1e4f9cff1947b78b57c, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 539249887
+      objectReference: {fileID: 0}
     - target: {fileID: 1303976924, guid: bb2006ec8009e1e4f9cff1947b78b57c, type: 3}
       propertyPath: nextLevel
-      value: Level_02
+      value: Level_01
       objectReference: {fileID: 0}
     - target: {fileID: 4539793196007744324, guid: bb2006ec8009e1e4f9cff1947b78b57c, type: 3}
       propertyPath: m_Name
       value: Hole
-      objectReference: {fileID: 0}
-    - target: {fileID: 4539793196007744330, guid: bb2006ec8009e1e4f9cff1947b78b57c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4539793196007744331, guid: bb2006ec8009e1e4f9cff1947b78b57c, type: 3}
       propertyPath: m_RootOrder
@@ -1188,11 +1188,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4539793196007744331, guid: bb2006ec8009e1e4f9cff1947b78b57c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.1167383
+      value: 3.485
       objectReference: {fileID: 0}
     - target: {fileID: 4539793196007744331, guid: bb2006ec8009e1e4f9cff1947b78b57c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.4912686
+      value: -3.492
       objectReference: {fileID: 0}
     - target: {fileID: 4539793196007744331, guid: bb2006ec8009e1e4f9cff1947b78b57c, type: 3}
       propertyPath: m_LocalPosition.z

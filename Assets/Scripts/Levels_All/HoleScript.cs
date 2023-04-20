@@ -16,7 +16,7 @@ public class HoleScript : NetworkBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.05f)
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.25f)
         {
             collision.gameObject.GetComponent<playerNetwork>().IsLevelCompleted = true;
             numOfPlayersCompleted.Value += 1;
