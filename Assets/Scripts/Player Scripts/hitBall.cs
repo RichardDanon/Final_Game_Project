@@ -42,7 +42,7 @@ public class hitBall : NetworkBehaviour
     }
 
     //put as update
-    private void FixedUpdate()
+    private void Update()
     {
 
         if (IsLocalPlayer)
