@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2090972054264107002}
   - component: {fileID: 2750750802292626163}
   - component: {fileID: 4893847844550382018}
-  - component: {fileID: 6355361426711129424}
   - component: {fileID: -6550377583885415757}
   - component: {fileID: 4391431335260504306}
   m_Layer: 0
@@ -137,7 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDragLength: 3
-  isMove: 0
   lineMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!58 &4893847844550382018
 CircleCollider2D:
@@ -174,18 +172,6 @@ CircleCollider2D:
   m_Offset: {x: -0.000000029802322, y: 0}
   serializedVersion: 2
   m_Radius: 0.19753954
---- !u!114 &6355361426711129424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995631911048754409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e533be66cfe514c840fb880b82c80c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-6550377583885415757
 MonoBehaviour:
   m_ObjectHideFlags: 0
