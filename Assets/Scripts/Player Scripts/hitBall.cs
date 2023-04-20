@@ -41,6 +41,7 @@ public class hitBall : NetworkBehaviour
 
     }
 
+    //put as update
     private void FixedUpdate()
     {
 

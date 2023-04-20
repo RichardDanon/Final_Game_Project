@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -20,9 +18,10 @@ public class HoleScript : NetworkBehaviour
         {
             collision.gameObject.GetComponent<playerNetwork>().IsLevelCompleted = true;
             numOfPlayersCompleted.Value += 1;
-            List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList();
 
-            if (numOfPlayersCompleted.Value == players.Count)
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+            if (numOfPlayersCompleted.Value == players.Length)
             {
                 NetworkManager.Singleton.SceneManager.LoadScene(nextLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
             }
