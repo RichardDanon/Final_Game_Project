@@ -34,7 +34,7 @@ public class HoleScript : NetworkBehaviour
     }
 
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void IsCompleteed_ServerRpc()
     {
         Invoke("isCompletedIncrement", 1f);
