@@ -1673,7 +1673,6 @@ GameObject:
   - component: {fileID: 1082141997}
   - component: {fileID: 1082141996}
   - component: {fileID: 1082141995}
-  - component: {fileID: 1082141998}
   m_Layer: 5
   m_Name: ServerBtn
   m_TagString: Untagged
@@ -1784,22 +1783,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082141993}
   m_CullTransparentMesh: 1
---- !u!114 &1082141998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1082141993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1208985155
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1 &1376647349
 GameObject:
   m_ObjectHideFlags: 0

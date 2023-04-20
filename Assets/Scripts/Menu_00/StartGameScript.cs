@@ -51,7 +51,6 @@ public class StartGameScript : NetworkBehaviour
 
 
 
-                    Debug.Log(IsServer);
 
                 }
             }

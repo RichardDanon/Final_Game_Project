@@ -19,17 +19,21 @@ public class NetworkManagerUI : NetworkBehaviour
     private InputField ip;
 
 
+    private bool isClientJoined = false;
+
     private void Awake()
     {
         hostBtn.onClick.AddListener(() =>
         {
-            string hostName = Dns.GetHostName();
-            string myIP = Dns.GetHostEntry(hostName).AddressList[1].ToString();
+            if (!isClientJoined)
+            {
+                string hostName = Dns.GetHostName();
+                string myIP = Dns.GetHostEntry(hostName).AddressList[1].ToString();
+                ipText.text = myIP;
+                NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address = myIP; ;
 
-            ipText.text = myIP;
-            NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address = myIP; ;
-
-            NetworkManager.Singleton.StartHost();
+                NetworkManager.Singleton.StartHost();
+            }
         });
 
         clientBtn.onClick.AddListener(() =>
@@ -40,6 +44,7 @@ public class NetworkManagerUI : NetworkBehaviour
 
                 NetworkManager.Singleton.StartClient();
 
+                isClientJoined = true;
 
 
             }
@@ -55,6 +60,8 @@ public class NetworkManagerUI : NetworkBehaviour
                 NetworkManager.Singleton.Shutdown();
                 Invoke("CameraCenter", 0.1f);
             }
+            isClientJoined = false;
+            ipText.text = string.Empty;
 
         });
     }
@@ -63,5 +70,9 @@ public class NetworkManagerUI : NetworkBehaviour
     {
         Camera.main.GetComponent<FollowPlayer>().setTarget(new Vector3(0, 0, 0));
     }
-
+    private void Update()
+    {
+        if (IsLocalPlayer && !isClientJoined)
+            isClientJoined = true;
+    }
 }
