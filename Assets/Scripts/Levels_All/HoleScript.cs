@@ -11,6 +11,14 @@ public class HoleScript : NetworkBehaviour
 
     private void Update()
     {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        if (numOfPlayersCompleted.Value == players.Length)
+        {
+            Debug.Log(numOfPlayersCompleted.Value);
+            Debug.Log(players.Length);
+            NetworkManager.Singleton.SceneManager.LoadScene(nextLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
+        }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -22,14 +30,8 @@ public class HoleScript : NetworkBehaviour
             else
                 numOfPlayersCompleted.Value += 1;
 
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
-            if (numOfPlayersCompleted.Value == players.Length)
-            {
-                Debug.Log(numOfPlayersCompleted.Value);
-                Debug.Log(players.Length);
-                NetworkManager.Singleton.SceneManager.LoadScene(nextLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
-            }
+
         }
     }
 
