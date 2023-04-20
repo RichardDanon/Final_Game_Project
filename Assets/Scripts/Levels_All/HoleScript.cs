@@ -23,6 +23,8 @@ public class HoleScript : NetworkBehaviour
 
             if (numOfPlayersCompleted.Value == players.Length)
             {
+                Debug.Log(numOfPlayersCompleted.Value);
+                Debug.Log(players.Length);
                 NetworkManager.Singleton.SceneManager.LoadScene(nextLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
             }
         }
