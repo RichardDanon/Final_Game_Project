@@ -8,10 +8,15 @@ public class BecomeSeethrough : MonoBehaviour
     [SerializeField]
     private Tilemap tilemap;
 
+    public float transparentValue = 0.5f;
+
+    [SerializeField]
+    private Color originalColor;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        originalColor = tilemap.color;
     }
 
     // Update is called once per frame
@@ -22,11 +27,13 @@ public class BecomeSeethrough : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        tilemap.color = new Color(1f, 1f, 1f, 0.5f);
+        Color color = tilemap.color;
+        color.a = transparentValue;
+        tilemap.color = color;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        tilemap.color = new Color(1f, 1f, 1f, 1f);
+        tilemap.color = originalColor;
     }
 }
