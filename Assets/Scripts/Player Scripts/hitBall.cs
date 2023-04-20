@@ -35,7 +35,7 @@ public class hitBall : NetworkBehaviour
             lineRenderer.endColor = new Color(255, 2255, 255, 0.25f);
             lineRenderer.startWidth = 0.2f;
             lineRenderer.endWidth = 0.01f;
-            lineRenderer.renderingLayerMask = 1;
+            lineRenderer.renderingLayerMask = 3;
         }
 
 
