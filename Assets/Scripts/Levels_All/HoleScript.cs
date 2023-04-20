@@ -24,11 +24,11 @@ public class HoleScript : NetworkBehaviour
                 numOfPlayersCompleted.Value += 1;
 
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
+            Debug.Log(numOfPlayersCompleted.Value);
+            Debug.Log(players.Length);
             if (numOfPlayersCompleted.Value == players.Length)
             {
-                Debug.Log(numOfPlayersCompleted.Value);
-                Debug.Log(players.Length);
+
                 numOfPlayersCompleted.Value = 0;
 
                 NetworkManager.Singleton.SceneManager.LoadScene(nextLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
