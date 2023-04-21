@@ -92,7 +92,6 @@ public class playerNetwork : NetworkBehaviour
     [ClientRpc]
     void SendColorsToClientRpc(Color[] modifiedColors)
     {
-        Debug.Log("Talking to client");
 
         List<Color> colors = modifiedColors.ToList();
 
@@ -105,7 +104,6 @@ public class playerNetwork : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     void SentColorsToServerRpc(Color color)
     {
-        Debug.Log("Talking to server");
 
         List<Color> modifiedColors = colors;
 

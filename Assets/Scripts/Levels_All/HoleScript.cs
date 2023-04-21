@@ -21,7 +21,7 @@ public class HoleScript : NetworkBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.25f)
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.20f)
         {
             if (collision.gameObject.GetComponent<playerNetwork>().IsLocalPlayer)
             {
@@ -49,7 +49,6 @@ public class HoleScript : NetworkBehaviour
     private void IsCompletedIncrement()
     {
         numOfPlayersCompleted.Value += 1;
-        Debug.Log("In isCompletedIncrement Completed : " + numOfPlayersCompleted.Value);
 
 
     }
@@ -57,14 +56,11 @@ public class HoleScript : NetworkBehaviour
     private void ChangeLevel()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log("Completed : " + numOfPlayersCompleted.Value);
-        Debug.Log("Players : " + players.Length);
-        Debug.Log("Completed BEFORE reset : " + numOfPlayersCompleted.Value);
+
 
         if (numOfPlayersCompleted.Value == players.Length)
         {
             numOfPlayersCompleted.Value = 0;
-            Debug.Log("Completed after reset : " + numOfPlayersCompleted.Value);
 
             NetworkManager.Singleton.SceneManager.LoadScene(nextLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
 
