@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 1995631911514962973}
+  colorPick: {fileID: 0}
   IsLevelCompleted: 0
 --- !u!50 &-6218454082835696036
 Rigidbody2D:
@@ -169,9 +170,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000029802322, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.19753954
+  m_Radius: 0.14
 --- !u!114 &-6550377583885415757
 MonoBehaviour:
   m_ObjectHideFlags: 0
