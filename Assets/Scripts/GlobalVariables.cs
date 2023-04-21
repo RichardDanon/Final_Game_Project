@@ -1,6 +1,26 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GlobalVariables : MonoBehaviour
 {
+    public static int numOfHitsForLvl = 0;
+    public static Dictionary<string, int> playerScores = new();
 
+
+
+
+    string MyDictionaryToJson(Dictionary<int, int> dict)
+    {
+        var entries = dict.Select(d =>
+            string.Format("\"{0}\": {1}", d.Key, string.Join(",", d.Value)));
+        return "{" + string.Join(",", entries) + "}";
+    }
+
+
+    public static void ResetVariables()
+    {
+        numOfHitsForLvl = 0;
+        playerScores.Clear();
+    }
 }

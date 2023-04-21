@@ -26,6 +26,7 @@ public class hitBall : NetworkBehaviour
         if (IsLocalPlayer)
         {
             lineRenderer = this.gameObject.AddComponent<LineRenderer>();
+
             //This does not work in the build version: I am guessing it's because it 
             //does not have acess to the Shaders library
             //lineRenderer.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
@@ -58,13 +59,11 @@ public class hitBall : NetworkBehaviour
                 {
                     isMoving = false;
                     gameObject.GetComponent<Collider2D>().isTrigger = true;
-
                 }
                 else
                 {
                     isMoving = true;
                     gameObject.GetComponent<Collider2D>().isTrigger = false;
-
                 }
 
 
@@ -83,6 +82,8 @@ public class hitBall : NetworkBehaviour
                         float force = (Vector2.Distance(this.gameObject.transform.position, endPos) * 100 / maxDragLength);
 
                         rb2d.AddForce(5 * force * -(endPos - (Vector2)transform.position).normalized);
+                        GlobalVariables.numOfHitsForLvl++;
+                        Debug.Log(GlobalVariables.numOfHitsForLvl);
                     }
                 }
 

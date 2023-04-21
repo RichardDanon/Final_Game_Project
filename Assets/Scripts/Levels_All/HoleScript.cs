@@ -1,6 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class HoleScript : NetworkBehaviour
 {
@@ -27,11 +27,11 @@ public class HoleScript : NetworkBehaviour
             {
 
                 collision.gameObject.GetComponent<playerNetwork>().IsLevelCompleted = true;
-
+                float resistance = Mathf.Lerp(0f, 1f, collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude / (collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude / 1000f));
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-collision.gameObject.GetComponent<Rigidbody2D>().velocity * resistance);
                 IsCompleteed_ServerRpc();
-
-
-
+                GlobalVariables.playerScores.Add(SceneManager.GetActiveScene().name, GlobalVariables.numOfHitsForLvl);
+                GlobalVariables.numOfHitsForLvl = 0;
 
             }
 

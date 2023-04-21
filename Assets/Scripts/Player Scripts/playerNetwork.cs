@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class playerNetwork : NetworkBehaviour
 {
@@ -12,6 +10,8 @@ public class playerNetwork : NetworkBehaviour
     private GameObject ball;
     [SerializeField]
     private FlexibleColorPicker colorPick;
+
+
     private List<Color> colors = new()
         {
              Color.red,
@@ -31,32 +31,25 @@ public class playerNetwork : NetworkBehaviour
     public bool IsLevelCompleted = false;
 
 
-    private int playerBefore = 1;
     void Start()
     {
 
-        List<Button> colorBtn = GameObject.FindObjectsOfType<Button>().ToList();
+
+        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
 
         colorPick = GameObject.FindObjectOfType<FlexibleColorPicker>();
-
-        foreach (Button button in colorBtn)
+        if (IsLocalPlayer)
         {
-            if (button.CompareTag("ColorPicker"))
-            {
-                button.onClick.AddListener(() =>
-                {
-                    if (IsLocalPlayer)
-                        SentColorsToServerRpc(colorPick.GetColor());
-                });
-            }
+            colorPick.SetColor(colors[(int)OwnerClientId]);
         }
 
         try
         {
             this.gameObject.GetComponentInChildren<SpriteRenderer>().color = colors[(int)OwnerClientId];
         }
-        catch (ArgumentOutOfRangeException ex)
+        catch
         {
+            this.gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.white;
 
         }
 
@@ -92,11 +85,7 @@ public class playerNetwork : NetworkBehaviour
     [ClientRpc]
     void SendColorsToClientRpc(Color[] modifiedColors)
     {
-
         List<Color> colors = modifiedColors.ToList();
-
-
-
         this.gameObject.GetComponentInChildren<SpriteRenderer>().color = colors[(int)OwnerClientId];
     }
 
@@ -107,18 +96,23 @@ public class playerNetwork : NetworkBehaviour
 
         List<Color> modifiedColors = colors;
 
+
+
         try
         {
+
             modifiedColors[(int)OwnerClientId] = color;
+            SendColorsToClientRpc(modifiedColors.ToArray());
+
         }
-        catch (ArgumentOutOfRangeException ex)
+        catch
         {
             modifiedColors.Add(color);
             modifiedColors[(int)OwnerClientId] = color;
             SendColorsToClientRpc(modifiedColors.ToArray());
 
         }
-        SendColorsToClientRpc(modifiedColors.ToArray());
+
     }
 
 

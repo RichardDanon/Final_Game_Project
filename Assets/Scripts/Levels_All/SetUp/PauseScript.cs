@@ -26,8 +26,6 @@ public class PauseScript : NetworkBehaviour
                     player.GetComponent<hitBall>().enabled = !canvas.activeSelf;
                 }
             }
-
-
         }
 
 
@@ -37,11 +35,18 @@ public class PauseScript : NetworkBehaviour
     {
         canvas.SetActive(false);
 
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            if (player.GetComponent<playerNetwork>().IsLocalPlayer)
+            {
+                player.GetComponent<hitBall>().enabled = true;
+            }
+        }
     }
 
     public void Disconnect()
     {
-
+        GlobalVariables.ResetVariables();
         NetworkManager.Singleton.Shutdown();
         SceneManager.LoadScene("Menu");
         Invoke("CameraCenter", 0.1f);

@@ -1,3 +1,4 @@
+using System.Net;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,7 +48,6 @@ public class StartGameScript : NetworkBehaviour
                     btn.onClick.AddListener(() =>
                     {
                         NetworkManager.Singleton.SceneManager.LoadScene(firstLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
-
                     });
                     isDone = true;
 
@@ -55,6 +55,15 @@ public class StartGameScript : NetworkBehaviour
 
 
                 }
+            }
+            else if (button.name == "CopyIp")
+            {
+                button.onClick.AddListener(() =>
+                {
+                    string hostName = Dns.GetHostName();
+
+                    GUIUtility.systemCopyBuffer = Dns.GetHostEntry(hostName).AddressList[1].ToString();
+                });
             }
 
         }

@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class LevelSpawn : MonoBehaviour
+public class LevelSpawn : NetworkBehaviour
 {
     [SerializeField]
     private float x, y;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList();
@@ -17,11 +20,11 @@ public class LevelSpawn : MonoBehaviour
             player.GetComponent<hitBall>().enabled = true;
             player.transform.position = new Vector2(x, y);
         });
-    }
+        GlobalVariables.numOfHitsForLvl = 0;
 
-    // Update is called once per frame
-    void Update()
-    {
+        GlobalVariables.playerScores.Add(SceneManager.GetActiveScene().name, GlobalVariables.numOfHitsForLvl);
+
+
 
     }
 }

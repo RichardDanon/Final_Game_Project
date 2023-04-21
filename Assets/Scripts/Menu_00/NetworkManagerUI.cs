@@ -33,6 +33,7 @@ public class NetworkManagerUI : NetworkBehaviour
                 string myIP = Dns.GetHostEntry(hostName).AddressList[1].ToString();
                 ipText.text = myIP;
                 NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address = myIP; ;
+                startBtn.SetActive(true);
 
                 NetworkManager.Singleton.StartHost();
             }
@@ -48,7 +49,6 @@ public class NetworkManagerUI : NetworkBehaviour
 
                 isClientJoined = true;
 
-
             }
 
         });
@@ -61,6 +61,7 @@ public class NetworkManagerUI : NetworkBehaviour
             startBtn.SetActive(false);
             isClientJoined = false;
             ipText.text = string.Empty;
+            GlobalVariables.ResetVariables();
 
         });
     }
