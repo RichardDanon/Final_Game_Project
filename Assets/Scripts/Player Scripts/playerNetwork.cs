@@ -35,7 +35,6 @@ public class playerNetwork : NetworkBehaviour
     {
 
 
-        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
 
         colorPick = GameObject.FindObjectOfType<FlexibleColorPicker>();
         if (IsLocalPlayer)
