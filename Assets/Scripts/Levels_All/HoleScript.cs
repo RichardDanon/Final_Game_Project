@@ -15,10 +15,7 @@ public class HoleScript : NetworkBehaviour
         if (IsServer)
             InvokeRepeating(nameof(ChangeLevel), 1, 1);
     }
-    private void FixedUpdate()
-    {
 
-    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.20f)
