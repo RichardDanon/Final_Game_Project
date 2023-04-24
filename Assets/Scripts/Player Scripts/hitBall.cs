@@ -83,7 +83,6 @@ public class hitBall : NetworkBehaviour
 
                         rb2d.AddForce(5 * force * -(endPos - (Vector2)transform.position).normalized);
                         GlobalVariables.numOfHitsForLvl++;
-                        Debug.Log(GlobalVariables.numOfHitsForLvl);
                     }
                 }
 
