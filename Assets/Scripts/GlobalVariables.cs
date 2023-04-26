@@ -10,7 +10,7 @@ public class GlobalVariables : MonoBehaviour
 
 
 
-    string MyDictionaryToJson(Dictionary<int, int> dict)
+    public static string MyDictionaryToJson(Dictionary<string, int> dict)
     {
         var entries = dict.Select(d =>
             string.Format("\"{0}\": {1}", d.Key, string.Join(",", d.Value)));
