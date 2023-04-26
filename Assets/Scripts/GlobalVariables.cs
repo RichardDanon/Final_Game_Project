@@ -15,7 +15,17 @@ public class GlobalVariables : MonoBehaviour
             string.Format("\"{0}\": {1}", d.Key, string.Join(",", d.Value)));
         return "{" + string.Join(",", entries) + "}";
     }
-    //var values = JsonConvert.DeserializeObject<Dictionary<string, int>>(json);
+
+
+
+    public static string MyDictionaryToJsonToJson(Dictionary<ulong, Dictionary<string, int>> dict)
+    {
+        var entries = dict.Select(d =>
+            string.Format("{0}: {1}", d.Key, string.Join(",", MyDictionaryToJson(d.Value))));
+        return "{" + string.Join(",", entries) + "}";
+    }
+
+
 
     public static void ResetVariables()
     {

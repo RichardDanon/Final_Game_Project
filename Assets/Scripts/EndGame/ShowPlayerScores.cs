@@ -46,10 +46,13 @@ public class ShowPlayerScores : NetworkBehaviour
 
 
     [ClientRpc]
-    void SendScoresToClientRpc(Dictionary<ulong, Dictionary<string, int>> allScores)
+    void SendScoresToClientRpc(FixedString512Bytes allScores)
     {
         Debug.Log("ClientRpc sent");
-        playersAllValues = allScores;
+        Debug.Log(allScores.ToString());
+
+        playersAllValues = JsonConvert.DeserializeObject<Dictionary<ulong, Dictionary<string, int>>>(allScores.ToString());
+
         Display();
     }
 
@@ -61,7 +64,7 @@ public class ShowPlayerScores : NetworkBehaviour
 
         Display();
 
-        SendScoresToClientRpc(playersAllValues);
+        SendScoresToClientRpc(GlobalVariables.MyDictionaryToJsonToJson(playersAllValues));
 
     }
 
@@ -77,7 +80,7 @@ public class ShowPlayerScores : NetworkBehaviour
         foreach (KeyValuePair<ulong, Dictionary<string, int>> row in playersAllValues)
         {
             RowScores rowSpawned = Instantiate(rowScores, transform).GetComponent<RowScores>();
-            rowSpawned.playerNum.text = row.Key.ToString();
+            rowSpawned.playerNum.text = ((int)row.Key + 1).ToString();
 
             rowSpawned.lvl_01_score.text = !row.Value.ContainsKey("Level_01") ? "0" : row.Value["Level_01"].ToString();
             rowSpawned.lvl_02_score.text = !row.Value.ContainsKey("Level_02") ? "0" : row.Value["Level_02"].ToString();
