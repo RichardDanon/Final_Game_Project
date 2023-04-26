@@ -47,6 +47,7 @@ public class StartGameScript : NetworkBehaviour
 
                     btn.onClick.AddListener(() =>
                     {
+
                         NetworkManager.Singleton.SceneManager.LoadScene(firstLevel, UnityEngine.SceneManagement.LoadSceneMode.Single);
                     });
                     isDone = true;
@@ -69,13 +70,24 @@ public class StartGameScript : NetworkBehaviour
         }
 
     }
+
+
+
+    private void Start()
+    {
+    }
+
+
     // Update is called once per frame
     void Update()
     {
 
         if (!isDone)
             StartGame();
+
+
     }
+
 
 
 }

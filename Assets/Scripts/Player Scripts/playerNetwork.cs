@@ -31,12 +31,13 @@ public class playerNetwork : NetworkBehaviour
     public bool IsLevelCompleted = false;
 
 
+
     void Start()
     {
 
 
-
         colorPick = GameObject.FindObjectOfType<FlexibleColorPicker>();
+
         if (IsLocalPlayer)
         {
             colorPick.SetColor(colors[(int)OwnerClientId]);
@@ -79,6 +80,12 @@ public class playerNetwork : NetworkBehaviour
             if (IsLocalPlayer)
                 SentColorsToServerRpc(colorPick.GetColor());
         }
+        else
+        {
+            if (IsLocalPlayer)
+                SentColorsToServerRpc(colors[(int)OwnerClientId]);
+
+        }
     }
 
     [ClientRpc]
@@ -113,6 +120,5 @@ public class playerNetwork : NetworkBehaviour
         }
 
     }
-
 
 }
