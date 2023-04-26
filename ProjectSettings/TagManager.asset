@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sand
   - ColorPicker
+  - Header
   layers:
   - Default
   - TransparentFX

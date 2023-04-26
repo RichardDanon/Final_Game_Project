@@ -398,6 +398,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 963552105
       objectReference: {fileID: 0}
+    - target: {fileID: 1303976924, guid: bb2006ec8009e1e4f9cff1947b78b57c, type: 3}
+      propertyPath: nextLevel
+      value: GameOver
+      objectReference: {fileID: 0}
     - target: {fileID: 4539793196007744324, guid: bb2006ec8009e1e4f9cff1947b78b57c, type: 3}
       propertyPath: m_Name
       value: Hole
@@ -16055,8 +16059,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c43cf4c9893c8d469e300e4d5b04e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: -8
-  y: 3
+  x: 5
+  y: -15
 --- !u!4 &1472041294
 Transform:
   m_ObjectHideFlags: 0
