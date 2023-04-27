@@ -66,9 +66,9 @@ public class playerNetwork : NetworkBehaviour
             {
                 Camera.main.GetComponent<FollowPlayer>().setTarget(gameObject.transform.position);
             }
-            else
+            else if (GameObject.FindGameObjectWithTag("Hole").transform.position != null)
             {
-                Camera.main.GetComponent<FollowPlayer>().setTarget(new Vector3(0, 0, 0));
+                Camera.main.GetComponent<FollowPlayer>().setTarget(GameObject.FindGameObjectWithTag("Hole").transform.position);
                 this.gameObject.transform.position = new Vector3(100, 100, 0);
             }
 

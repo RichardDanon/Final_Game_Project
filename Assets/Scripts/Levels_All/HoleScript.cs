@@ -18,7 +18,7 @@ public class HoleScript : NetworkBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.20f)
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.15f)
         {
             if (collision.gameObject.GetComponent<playerNetwork>().IsLocalPlayer)
             {
