@@ -401,8 +401,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 288.15, y: 190.49}
-  m_SizeDelta: {x: 274.52, y: 145.01}
+  m_AnchoredPosition: {x: -221.13007, y: 205.27}
+  m_SizeDelta: {x: 236.4, y: 108.77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &121816212
 MonoBehaviour:
@@ -547,8 +547,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 638.83997, y: -19.654999}
-  m_SizeDelta: {x: 374.32, y: 139.31}
+  m_AnchoredPosition: {x: 638.83997, y: 0.0000038146973}
+  m_SizeDelta: {x: 268.7, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &190791969
 MonoBehaviour:
@@ -1260,8 +1260,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 212.71004, y: 394.35004}
-  m_SizeDelta: {x: 425.41, y: 139.31}
+  m_AnchoredPosition: {x: 212.71004, y: 407.90002}
+  m_SizeDelta: {x: 342.65, y: 112.21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &981309346
 MonoBehaviour:
@@ -1544,8 +1544,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 638.83997, y: 394.35}
-  m_SizeDelta: {x: 374.32, y: 139.31}
+  m_AnchoredPosition: {x: 638.83997, y: 407.9}
+  m_SizeDelta: {x: 301.5, y: 112.21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1082141995
 MonoBehaviour:
@@ -2092,11 +2092,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2130943084915617137, guid: 4214b57e615806c448ba9d993d629531, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -63
+      value: -161
       objectReference: {fileID: 0}
     - target: {fileID: 2130943084915617137, guid: 4214b57e615806c448ba9d993d629531, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -55
+      value: 380.02
       objectReference: {fileID: 0}
     - target: {fileID: 2130943084915617137, guid: 4214b57e615806c448ba9d993d629531, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2113,6 +2113,10 @@ PrefabInstance:
     - target: {fileID: 2130943084915617138, guid: 4214b57e615806c448ba9d993d629531, type: 3}
       propertyPath: m_Name
       value: FlexibleColorPicker
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130943084915617138, guid: 4214b57e615806c448ba9d993d629531, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2130943084915617138, guid: 4214b57e615806c448ba9d993d629531, type: 3}
       propertyPath: m_TagString
@@ -2907,8 +2911,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 638.84, y: 190}
-  m_SizeDelta: {x: 374.32, y: 139.31}
+  m_AnchoredPosition: {x: 638.84, y: 206.94}
+  m_SizeDelta: {x: 283.3, y: 105.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2007865630
 MonoBehaviour:
