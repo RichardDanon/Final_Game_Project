@@ -21,7 +21,7 @@ public class GlobalVariables : MonoBehaviour
     public static string MyDictionaryToJsonToJson(Dictionary<ulong, Dictionary<string, int>> dict)
     {
         var entries = dict.Select(d =>
-            string.Format("{0}: {1}", d.Key, string.Join(",", MyDictionaryToJson(d.Value))));
+            string.Format(" {0} : {1}", d.Key, string.Join(",", MyDictionaryToJson(d.Value))));
         return "{" + string.Join(",", entries) + "}";
     }
 
