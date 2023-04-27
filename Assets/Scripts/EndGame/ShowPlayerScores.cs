@@ -43,8 +43,6 @@ public class ShowPlayerScores : NetworkBehaviour
         playersAllValues.Add(id, JsonConvert.DeserializeObject<Dictionary<string, int>>(scores.ToString()));
         UpdatePlayerScores();
     }
-
-
     [ClientRpc]
     void SendScoresToClientRpc(FixedString512Bytes allScores)
     {
@@ -52,7 +50,6 @@ public class ShowPlayerScores : NetworkBehaviour
         Debug.Log(allScores.ToString());
 
         playersAllValues = JsonConvert.DeserializeObject<Dictionary<ulong, Dictionary<string, int>>>(allScores.ToString());
-
         Display();
     }
 
@@ -63,7 +60,6 @@ public class ShowPlayerScores : NetworkBehaviour
     {
 
         Display();
-
         SendScoresToClientRpc(GlobalVariables.MyDictionaryToJsonToJson(playersAllValues));
 
     }
