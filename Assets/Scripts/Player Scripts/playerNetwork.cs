@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
@@ -12,7 +13,7 @@ public class playerNetwork : NetworkBehaviour
     private FlexibleColorPicker colorPick;
 
 
-    private List<Color> colors = new()
+    public static List<Color> colors = new()
         {
              Color.red,
              Color.green,
@@ -53,6 +54,10 @@ public class playerNetwork : NetworkBehaviour
 
         }
 
+
+        StartCoroutine(UpdateCamera());
+        StartCoroutine(UpdateColor());
+
     }
 
 
@@ -60,38 +65,71 @@ public class playerNetwork : NetworkBehaviour
     private void Update()
     {
 
-        if (IsLocalPlayer && gameObject != null && Camera.main != null)
+
+
+    }
+
+
+    IEnumerator UpdateColor()
+    {
+        while (true)
         {
-            if (!IsLevelCompleted)
+
+            if (colorPick != null)
             {
-                Camera.main.GetComponent<FollowPlayer>().setTarget(gameObject.transform.position);
+
+                if (IsLocalPlayer)
+                    SentColorsToServerRpc(colorPick.GetColor());
             }
-            else if (GameObject.FindGameObjectWithTag("Hole").transform.position != null)
+            //else
+            //{
+            //    if (IsLocalPlayer)
+            //        SentColorsToServerRpc(colors[(int)OwnerClientId]);
+
+            //}
+            yield return new WaitForSeconds(0.25f);
+        }
+
+    }
+
+    IEnumerator UpdateCamera()
+    {
+        while (true)
+        {
+            if (IsLocalPlayer && gameObject != null && Camera.main != null)
             {
-                Camera.main.GetComponent<FollowPlayer>().setTarget(GameObject.FindGameObjectWithTag("Hole").transform.position);
-                this.gameObject.transform.position = new Vector3(100, 100, 0);
+                if (!IsLevelCompleted)
+                {
+                    Camera.main.GetComponent<FollowPlayer>().setTarget(gameObject.transform.position);
+                }
+                else if (GameObject.FindGameObjectWithTag("Hole") != null && GameObject.FindGameObjectWithTag("Hole").transform.position != null)
+                {
+                    Camera.main.GetComponent<FollowPlayer>().setTarget(GameObject.FindGameObjectWithTag("Hole").transform.position);
+                    this.gameObject.transform.position = new Vector3(100, 100, 0);
+                }
+
+
             }
-
-
-        }
-        if (colorPick != null)
-        {
-
-            if (IsLocalPlayer)
-                SentColorsToServerRpc(colorPick.GetColor());
-        }
-        else
-        {
-            if (IsLocalPlayer)
-                SentColorsToServerRpc(colors[(int)OwnerClientId]);
-
+            yield return new WaitForSeconds(0);
         }
     }
+
+
+
+
+
+
+
 
     [ClientRpc]
     void SendColorsToClientRpc(Color[] modifiedColors)
     {
-        List<Color> colors = modifiedColors.ToList();
+
+
+
+        colors = modifiedColors.ToList();
+
+
         this.gameObject.GetComponentInChildren<SpriteRenderer>().color = colors[(int)OwnerClientId];
     }
 
@@ -108,6 +146,7 @@ public class playerNetwork : NetworkBehaviour
         {
 
             modifiedColors[(int)OwnerClientId] = color;
+            Debug.Log(modifiedColors);
             SendColorsToClientRpc(modifiedColors.ToArray());
 
         }

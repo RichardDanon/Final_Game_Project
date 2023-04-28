@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShowPlayerScores : NetworkBehaviour
 {
@@ -20,6 +21,11 @@ public class ShowPlayerScores : NetworkBehaviour
 
         SendScoresToServerRpc(GlobalVariables.MyDictionaryToJson(GlobalVariables.playerScores), NetworkManager.Singleton.LocalClientId);
 
+        if (IsServer)
+        {
+
+        }
+
     }
 
     void Update()
@@ -29,7 +35,7 @@ public class ShowPlayerScores : NetworkBehaviour
             if (!playersAllValues.ContainsKey(NetworkManager.Singleton.LocalClientId))
             {
                 playersAllValues.Add(NetworkManager.Singleton.LocalClientId, new Dictionary<string, int>(GlobalVariables.playerScores));
-                totalPlayers = NetworkManager.Singleton.ConnectedClientsList.Count;
+                totalPlayers = GameObject.FindGameObjectsWithTag("Player").Count();
                 Invoke("UpdatePlayerScores", 0.5f);
             }
 
@@ -89,6 +95,15 @@ public class ShowPlayerScores : NetworkBehaviour
                 total += x;
             }
             rowSpawned.totalScore.text = total.ToString();
+
+
+
+            foreach (Transform tr in rowSpawned.transform)
+            {
+
+                tr.gameObject.GetComponentInChildren<Text>().color = playerNetwork.colors[(int)row.Key];
+
+            }
 
 
         }
