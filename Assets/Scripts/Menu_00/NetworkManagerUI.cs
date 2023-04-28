@@ -3,12 +3,13 @@ using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class NetworkManagerUI : NetworkBehaviour
 {
     //Variables
     [SerializeField]
-    private Text ipText;
+    private TMP_Text ipText;
     [SerializeField]
     private Button hostBtn;
     [SerializeField]
@@ -16,7 +17,7 @@ public class NetworkManagerUI : NetworkBehaviour
     [SerializeField]
     private Button clientBtnCancel;
     [SerializeField]
-    private InputField ip;
+    private TMP_InputField ip;
     [SerializeField]
     private GameObject startBtn;
 
