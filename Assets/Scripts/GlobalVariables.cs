@@ -14,9 +14,6 @@ public class GlobalVariables : MonoBehaviour
     {
         return JsonConvert.SerializeObject(dict);
 
-        //var entries = dict.Select(d =>
-        //    string.Format("\"{0}\": {1}", d.Key, string.Join(",", d.Value)));
-        //return "{" + string.Join(",", entries) + "}";
     }
 
 
@@ -25,9 +22,7 @@ public class GlobalVariables : MonoBehaviour
     {
 
         return JsonConvert.SerializeObject(dict);
-        //var entries = dict.Select(d =>
-        //    string.Format(" {0} : {1}", d.Key, string.Join(",", MyDictionaryToJson(d.Value))));
-        //return "{" + string.Join(",", entries) + "}";
+
     }
 
 

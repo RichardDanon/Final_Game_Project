@@ -1,9 +1,9 @@
 using System.Net;
+using TMPro;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class NetworkManagerUI : NetworkBehaviour
 {
@@ -20,12 +20,14 @@ public class NetworkManagerUI : NetworkBehaviour
     private TMP_InputField ip;
     [SerializeField]
     private GameObject startBtn;
-
+    [SerializeField]
+    private FlexibleColorPicker colorPicker;
 
     private bool isClientJoined = false;
 
     private void Awake()
     {
+
         hostBtn.onClick.AddListener(() =>
         {
             if (!isClientJoined)
@@ -73,8 +75,17 @@ public class NetworkManagerUI : NetworkBehaviour
     }
     private void Update()
     {
+
+        if (NetworkManager.Singleton.IsConnectedClient || NetworkManager.Singleton.IsHost)
+            colorPicker.gameObject.SetActive(true);
+        else
+            colorPicker.gameObject.SetActive(false);
+
         if (IsLocalPlayer && !isClientJoined)
+        {
             isClientJoined = true;
+        }
+
         if (this.gameObject.transform.localScale != Vector3.one)
         {
             this.gameObject.transform.localScale = Vector3.one;

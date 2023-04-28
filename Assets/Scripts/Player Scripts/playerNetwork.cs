@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerNetwork : NetworkBehaviour
 {
@@ -35,6 +36,7 @@ public class playerNetwork : NetworkBehaviour
 
     void Start()
     {
+
         if (IsServer)
         {
             SendColorsToClientRpc(colors.ToArray());
@@ -42,12 +44,8 @@ public class playerNetwork : NetworkBehaviour
 
 
 
-        colorPick = GameObject.FindObjectOfType<FlexibleColorPicker>();
 
-        if (colorPick != null && IsLocalPlayer)
-        {
-            colorPick.SetColor(colors[(int)OwnerClientId]);
-        }
+
 
         try
         {
@@ -84,14 +82,11 @@ public class playerNetwork : NetworkBehaviour
             {
 
                 if (IsLocalPlayer)
+                {
                     SentColorsToServerRpc(colorPick.GetColor());
+                }
             }
-            //else
-            //{
-            //    if (IsLocalPlayer)
-            //        SentColorsToServerRpc(colors[(int)OwnerClientId]);
 
-            //}
             yield return new WaitForSeconds(0.25f);
         }
 
@@ -101,6 +96,14 @@ public class playerNetwork : NetworkBehaviour
     {
         while (true)
         {
+            if (SceneManager.GetActiveScene().name.Equals("Menu") && colorPick == null)
+            {
+                colorPick = GameObject.FindObjectOfType<FlexibleColorPicker>();
+                if (colorPick != null && IsLocalPlayer)
+                {
+                    colorPick.SetColor(colors[(int)OwnerClientId]);
+                }
+            }
             if (IsLocalPlayer && gameObject != null && Camera.main != null)
             {
                 if (!IsLevelCompleted)
