@@ -35,11 +35,16 @@ public class playerNetwork : NetworkBehaviour
 
     void Start()
     {
+        if (IsServer)
+        {
+            SendColorsToClientRpc(colors.ToArray());
+        }
+
 
 
         colorPick = GameObject.FindObjectOfType<FlexibleColorPicker>();
 
-        if (IsLocalPlayer)
+        if (colorPick != null && IsLocalPlayer)
         {
             colorPick.SetColor(colors[(int)OwnerClientId]);
         }
