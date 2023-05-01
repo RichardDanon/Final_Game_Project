@@ -11,6 +11,8 @@ public class ShowPlayerScores : NetworkBehaviour
 
     public RowScores rowScores;
 
+    private int highestScore = 0;
+
     private Dictionary<ulong, Dictionary<string, int>> playersAllValues = new();
 
     private int totalPlayers = 0;
@@ -93,6 +95,12 @@ public class ShowPlayerScores : NetworkBehaviour
             foreach (int x in row.Value.Values)
             {
                 total += x;
+            }
+            if (total > highestScore)
+            {
+                highestScore = total;
+                rowSpawned.playerNum.text = "Winner !" + ((int)row.Key + 1).ToString();
+
             }
             rowSpawned.totalScore.text = total.ToString();
 

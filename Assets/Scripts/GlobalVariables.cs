@@ -13,7 +13,6 @@ public class GlobalVariables : MonoBehaviour
     public static string MyDictionaryToJson(Dictionary<string, int> dict)
     {
         return JsonConvert.SerializeObject(dict);
-
     }
 
 
