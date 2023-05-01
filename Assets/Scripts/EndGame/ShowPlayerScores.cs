@@ -84,26 +84,28 @@ public class ShowPlayerScores : NetworkBehaviour
         foreach (KeyValuePair<ulong, Dictionary<string, int>> row in playersAllValues)
         {
             RowScores rowSpawned = Instantiate(rowScores, transform).GetComponent<RowScores>();
-            rowSpawned.playerNum.text = ((int)row.Key + 1).ToString();
-
-            rowSpawned.lvl_01_score.text = !row.Value.ContainsKey("Level_01") ? "0" : row.Value["Level_01"].ToString();
-            rowSpawned.lvl_02_score.text = !row.Value.ContainsKey("Level_02") ? "0" : row.Value["Level_02"].ToString();
-            rowSpawned.lvl_03_score.text = !row.Value.ContainsKey("Level_03") ? "0" : row.Value["Level_03"].ToString();
-            rowSpawned.lvl_04_score.text = !row.Value.ContainsKey("Level_04") ? "0" : row.Value["Level_04"].ToString();
 
             int total = 0;
             foreach (int x in row.Value.Values)
             {
                 total += x;
             }
+
             if (total > highestScore)
             {
                 highestScore = total;
-                rowSpawned.playerNum.text = "Winner !" + ((int)row.Key + 1).ToString();
-
             }
             rowSpawned.totalScore.text = total.ToString();
 
+            if (total == highestScore)
+                rowSpawned.playerNum.text = "Winner " + ((int)row.Key + 1).ToString();
+            else
+                rowSpawned.playerNum.text = ((int)row.Key + 1).ToString();
+
+            rowSpawned.lvl_01_score.text = !row.Value.ContainsKey("Level_01") ? "0" : row.Value["Level_01"].ToString();
+            rowSpawned.lvl_02_score.text = !row.Value.ContainsKey("Level_02") ? "0" : row.Value["Level_02"].ToString();
+            rowSpawned.lvl_03_score.text = !row.Value.ContainsKey("Level_03") ? "0" : row.Value["Level_03"].ToString();
+            rowSpawned.lvl_04_score.text = !row.Value.ContainsKey("Level_04") ? "0" : row.Value["Level_04"].ToString();
 
 
             foreach (Transform tr in rowSpawned.transform)
