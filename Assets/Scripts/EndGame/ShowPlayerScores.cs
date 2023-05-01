@@ -95,6 +95,8 @@ public class ShowPlayerScores : NetworkBehaviour
             {
                 highestScore = total;
             }
+
+
             rowSpawned.totalScore.text = total.ToString();
 
             if (total == highestScore)

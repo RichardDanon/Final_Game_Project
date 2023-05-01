@@ -39,6 +39,7 @@ public class NetworkManagerUI : NetworkBehaviour
                 startBtn.SetActive(true);
 
                 NetworkManager.Singleton.StartHost();
+
             }
         });
 
@@ -85,6 +86,9 @@ public class NetworkManagerUI : NetworkBehaviour
         {
             isClientJoined = true;
         }
+
+
+
 
         if (this.gameObject.transform.localScale != Vector3.one)
         {
