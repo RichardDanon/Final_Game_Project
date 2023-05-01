@@ -1,12 +1,14 @@
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreUpdate : MonoBehaviour
 {
-    [SerializeField]
-    private Text score;
+    [SerializeField] 
+    private TextMeshProUGUI scoreTMP;
+
     void Start()
     {
 
@@ -19,6 +21,6 @@ public class ScoreUpdate : MonoBehaviour
         {
             GlobalVariables.playerScores[SceneManager.GetActiveScene().name] = GlobalVariables.numOfHitsForLvl;
         }
-        score.text = string.Join("\n", GlobalVariables.playerScores.Select(d => string.Format(" {0}: {1} Strokes", d.Key, d.Value)));
+        scoreTMP.text = string.Join("\n", GlobalVariables.playerScores.Select(d => string.Format("<align=left>{0}: {1} Strokes</align>", d.Key, d.Value)));
     }
 }
