@@ -91,7 +91,7 @@ public class ShowPlayerScores : NetworkBehaviour
                 total += x;
             }
 
-            if (total < highestScore)
+            if (total < highestScore || highestScore == 0)
             {
                 highestScore = total;
             }
