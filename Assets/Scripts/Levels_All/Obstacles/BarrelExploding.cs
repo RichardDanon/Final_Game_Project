@@ -27,10 +27,13 @@ public class BarrelExploding : MonoBehaviour
         foreach (Collider2D collider in colliders)
         {
             Rigidbody2D rigidbody = collider.GetComponent<Rigidbody2D>();
-            Vector2 direction = (collider.transform.position - transform.position).normalized;
-            rigidbody.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+            if (rigidbody != null)
+            {
+                Vector2 direction = (collider.transform.position - transform.position).normalized;
+                rigidbody.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+            }
         }
         
-        Destroy(anim.gameObject);
+        Destroy(anim.gameObject, 0.5f);
     }
 }
