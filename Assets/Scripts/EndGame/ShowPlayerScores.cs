@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class ShowPlayerScores : NetworkBehaviour
 {
+    [SerializeField]
+    private int numOfLevels = 4;
 
     public RowScores rowScores;
 
@@ -19,14 +21,7 @@ public class ShowPlayerScores : NetworkBehaviour
 
     void Start()
     {
-        Debug.Log("ServerRpc sent in start");
-
         SendScoresToServerRpc(GlobalVariables.MyDictionaryToJson(GlobalVariables.playerScores), NetworkManager.Singleton.LocalClientId);
-
-        if (IsServer)
-        {
-
-        }
 
     }
 
@@ -47,15 +42,12 @@ public class ShowPlayerScores : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     void SendScoresToServerRpc(FixedString512Bytes scores, ulong id)
     {
-        Debug.Log("ServerRpc sent");
         playersAllValues.Add(id, JsonConvert.DeserializeObject<Dictionary<string, int>>(scores.ToString()));
         UpdatePlayerScores();
     }
     [ClientRpc]
     void SendScoresToClientRpc(FixedString512Bytes allScores)
     {
-        Debug.Log("ClientRpc sent");
-        Debug.Log(allScores.ToString());
 
         playersAllValues = JsonConvert.DeserializeObject<Dictionary<ulong, Dictionary<string, int>>>(allScores.ToString());
         Display();
@@ -88,16 +80,24 @@ public class ShowPlayerScores : NetworkBehaviour
             int total = 0;
             foreach (int x in player.Value.Values)
             {
-                total += x;
+                if (player.Value.Count == numOfLevels)
+                {
+                    total += x;
+                }
+                else
+                {
+                    total = 0;
+                    break;
+                }
             }
 
-            if (total < highestScore || highestScore == 0)
+            if ((total < highestScore || highestScore == 0) && player.Value.Count == numOfLevels)
             {
                 highestScore = total;
             }
 
-
-            rowSpawned.totalScore.text = total.ToString();
+            if (total != 0)
+                rowSpawned.totalScore.text = total.ToString();
 
             if (total == highestScore)
                 rowSpawned.playerNum.text = "Winner " + ((int)player.Key + 1).ToString();
@@ -112,9 +112,7 @@ public class ShowPlayerScores : NetworkBehaviour
 
             foreach (Transform tr in rowSpawned.transform)
             {
-
                 tr.gameObject.GetComponentInChildren<Text>().color = playerNetwork.colors[(int)player.Key];
-
             }
 
 

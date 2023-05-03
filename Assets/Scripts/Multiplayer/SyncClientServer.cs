@@ -35,14 +35,12 @@ public class SyncClientServer : MonoBehaviour
     //[ServerRpc(RequireOwnership = false)]
     //public static void SendScoresToServerRpc(FixedString512Bytes scores, ulong id)
     //{
-    //    Debug.Log("ServerRpc sent");
     //    playersAllValues.Add(id, JsonConvert.DeserializeObject<Dictionary<string, int>>(scores.ToString()));
     //}
     //[ClientRpc]
     //public static void SendScoresToClientRpc(FixedString512Bytes allScores)
     //{
-    //    Debug.Log("ClientRpc sent");
-    //    Debug.Log(allScores.ToString());
+
 
     //    playersAllValues = JsonConvert.DeserializeObject<Dictionary<ulong, Dictionary<string, int>>>(allScores.ToString());
     //}

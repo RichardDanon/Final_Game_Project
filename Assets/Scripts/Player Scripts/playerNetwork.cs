@@ -152,18 +152,14 @@ public class playerNetwork : NetworkBehaviour
 
         try
         {
-
             modifiedColors[(int)OwnerClientId] = color;
-            Debug.Log(modifiedColors);
             SendColorsToClientRpc(modifiedColors.ToArray());
-
         }
         catch
         {
             modifiedColors.Add(color);
             modifiedColors[(int)OwnerClientId] = color;
             SendColorsToClientRpc(modifiedColors.ToArray());
-
         }
 
     }
