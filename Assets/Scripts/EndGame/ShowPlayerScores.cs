@@ -48,7 +48,6 @@ public class ShowPlayerScores : NetworkBehaviour
     [ClientRpc]
     void SendScoresToClientRpc(FixedString512Bytes allScores)
     {
-
         playersAllValues = JsonConvert.DeserializeObject<Dictionary<ulong, Dictionary<string, int>>>(allScores.ToString());
         Display();
     }

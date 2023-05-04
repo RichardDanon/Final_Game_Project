@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Unity.Netcode;
 using UnityEngine;
 
-public class BarrelExploding : MonoBehaviour
+public class BarrelExploding : NetworkBehaviour
 {
 
     Animator anim;
@@ -11,7 +9,8 @@ public class BarrelExploding : MonoBehaviour
     private float explosionForce = 5f;
     [SerializeField]
     private float explosionRadius = 5f;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -20,8 +19,34 @@ public class BarrelExploding : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (NetworkManager.Singleton.IsHost)
+        {
+            SendExplosionToClientRpc();
+        }
+        else
+        {
+            SendExplosionToServerRpc();
+        }
+    }
+
+    [ClientRpc]
+    private void SendExplosionToClientRpc()
+    {
+        Explosion();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SendExplosionToServerRpc()
+    {
+        Explosion();
+        SendExplosionToClientRpc();
+    }
+
+
+    public void Explosion()
+    {
         anim.enabled = true;
-            
+
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
         foreach (Collider2D collider in colliders)
@@ -33,7 +58,10 @@ public class BarrelExploding : MonoBehaviour
                 rigidbody.AddForce(direction * explosionForce, ForceMode2D.Impulse);
             }
         }
-        
+
         Destroy(anim.gameObject, 0.5f);
+        NetworkObject.Despawn(gameObject);
     }
+
 }
+
