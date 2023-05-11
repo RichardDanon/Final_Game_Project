@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -59,7 +60,15 @@ public class BarrelExploding : NetworkBehaviour
             }
         }
 
+
         Destroy(anim.gameObject, 0.5f);
+        StartCoroutine(despawnObject());
+    }
+
+    public IEnumerator despawnObject()
+    {
+        yield return new WaitForSeconds(0.5f);
+
         NetworkObject.Despawn(gameObject);
     }
 
