@@ -22,9 +22,14 @@ public class HoleScript : NetworkBehaviour
         {
             if (collision.gameObject.GetComponent<playerNetwork>().IsLocalPlayer)
             {
+               
                 collision.gameObject.GetComponent<playerNetwork>().IsLevelCompleted = true;
                 float resistance = Mathf.Lerp(0f, 1f, collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude / (collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude / 1000f));
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-collision.gameObject.GetComponent<Rigidbody2D>().velocity * resistance);
+
+                
+                AudioSource.PlayClipAtPoint(Resources.Load<AudioClip>("Audio/Falling"), transform.position);
+
                 IsCompleteed_ServerRpc();
                 GlobalVariables.playerScores[SceneManager.GetActiveScene().name] = GlobalVariables.numOfHitsForLvl;
             }
