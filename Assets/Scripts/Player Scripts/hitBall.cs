@@ -3,14 +3,9 @@ using UnityEngine;
 
 public class hitBall : NetworkBehaviour
 {
-
-
     [SerializeField]
     private float maxDragLength = 0.1f;
 
-    public AudioClip hitSound;
-
-    private AudioSource audioSource;
 
     private bool isMoving;
 
@@ -25,11 +20,6 @@ public class hitBall : NetworkBehaviour
 
     private void Start()
     {
-
-        rb2d = gameObject.GetComponent<Rigidbody2D>();
-        audioSource = gameObject.AddComponent<AudioSource>();
-        hitSound = Resources.Load<AudioClip>("Audio/Hit");
-        audioSource.clip = hitSound;
 
         rb2d = gameObject.GetComponent<Rigidbody2D>();
 
@@ -93,7 +83,6 @@ public class hitBall : NetworkBehaviour
 
                         rb2d.AddForce(5 * force * -(endPos - (Vector2)transform.position).normalized);
                         GlobalVariables.numOfHitsForLvl++;
-                        audioSource.Play();
                     }
                 }
 
