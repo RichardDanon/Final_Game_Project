@@ -1575,6 +1575,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 3327122602
       objectReference: {fileID: 0}
+    - target: {fileID: 1303976924, guid: bb2006ec8009e1e4f9cff1947b78b57c, type: 3}
+      propertyPath: nextLevel
+      value: GameOver
+      objectReference: {fileID: 0}
     - target: {fileID: 4539793196007744324, guid: bb2006ec8009e1e4f9cff1947b78b57c, type: 3}
       propertyPath: m_Name
       value: Hole
