@@ -107,7 +107,6 @@ public class ShowPlayerScores : NetworkBehaviour
             rowSpawned.lvl_02_score.text = !player.Value.ContainsKey("Level_02") ? "0" : player.Value["Level_02"].ToString();
             rowSpawned.lvl_03_score.text = !player.Value.ContainsKey("Level_03") ? "0" : player.Value["Level_03"].ToString();
             rowSpawned.lvl_04_score.text = !player.Value.ContainsKey("Level_04") ? "0" : player.Value["Level_04"].ToString();
-            rowSpawned.lvl_05_score.text = !player.Value.ContainsKey("Level_05") ? "0" : player.Value["Level_05"].ToString();
 
 
             foreach (Transform tr in rowSpawned.transform)
