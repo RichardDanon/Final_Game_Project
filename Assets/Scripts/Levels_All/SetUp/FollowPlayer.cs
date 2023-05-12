@@ -10,12 +10,14 @@ public class FollowPlayer : MonoBehaviour
     {
         if (playerTransform != null)
         {
+            //make camera follow player position
             transform.position = playerTransform + new Vector3(0, 0, depth);
         }
     }
 
     public void setTarget(Vector3 target)
     {
+        //set the target of what the camera follows
         playerTransform = target;
     }
 }

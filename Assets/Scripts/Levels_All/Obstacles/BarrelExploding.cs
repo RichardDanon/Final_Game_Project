@@ -20,6 +20,7 @@ public class BarrelExploding : NetworkBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //if host then tell clients it exploded otherwise tell server to tell clients
         if (NetworkManager.Singleton.IsHost)
         {
             SendExplosionToClientRpc();
@@ -33,12 +34,14 @@ public class BarrelExploding : NetworkBehaviour
     [ClientRpc]
     private void SendExplosionToClientRpc()
     {
+        //tell all clients that this exploded
         Explosion();
     }
 
     [ServerRpc(RequireOwnership = false)]
     private void SendExplosionToServerRpc()
     {
+        //make it explode then tell all clients that this exploded
         Explosion();
         SendExplosionToClientRpc();
     }
@@ -46,6 +49,7 @@ public class BarrelExploding : NetworkBehaviour
 
     public void Explosion()
     {
+        //make ball be pushed back and play animation
         anim.enabled = true;
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);

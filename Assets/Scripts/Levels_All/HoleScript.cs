@@ -12,13 +12,16 @@ public class HoleScript : NetworkBehaviour
     private void Start()
     {
         numOfPlayersCompleted.Value = 0;
+
+        //check if all players finished each second to reuce lag
         if (IsServer)
             InvokeRepeating(nameof(ChangeLevel), 1, 1);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.15f)
+        //determine of player is slow enough to enter the hole
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude < 0.20f)
         {
             if (collision.gameObject.GetComponent<playerNetwork>().IsLocalPlayer)
             {
@@ -35,11 +38,14 @@ public class HoleScript : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void IsCompleteed_ServerRpc()
     {
+
+        //tell the server the client finished the level
         Invoke("IsCompletedIncrement", 1f);
     }
 
     private void IsCompletedIncrement()
     {
+        //variable shared across the network for how many finished
         numOfPlayersCompleted.Value += 1;
 
 
@@ -47,9 +53,10 @@ public class HoleScript : NetworkBehaviour
 
     private void ChangeLevel()
     {
+
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
-
+        //compare the number who finished to the number of player, and change level if everyone finished
         if (numOfPlayersCompleted.Value == players.Length)
         {
             numOfPlayersCompleted.Value = 0;

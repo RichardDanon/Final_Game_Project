@@ -53,6 +53,11 @@ public class PauseScript : NetworkBehaviour
 
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     private void CameraCenter()
     {
         Camera.main.GetComponent<FollowPlayer>().setTarget(new Vector3(0, 0, 0));

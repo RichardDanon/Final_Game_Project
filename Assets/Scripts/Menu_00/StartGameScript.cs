@@ -34,6 +34,7 @@ public class StartGameScript : NetworkBehaviour
                 btn = button;
                 if (IsServer)
                 {
+                    //make start button change to firstlevel
                     btnObject = GameObject.FindObjectsOfType<GameObject>(true);
 
 
@@ -59,6 +60,7 @@ public class StartGameScript : NetworkBehaviour
             }
             else if (button.name == "CopyIp")
             {
+                //copy to clipboard the IP of the hosted game
                 button.onClick.AddListener(() =>
                 {
                     string hostName = Dns.GetHostName();
@@ -73,15 +75,12 @@ public class StartGameScript : NetworkBehaviour
 
 
 
-    private void Start()
-    {
-    }
 
 
     // Update is called once per frame
     void Update()
     {
-
+        //this was done because of a bug, idk why, it's too late for me to use braincells to know why
         if (!isDone)
             StartGame();
 

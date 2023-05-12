@@ -28,6 +28,7 @@ public class GlobalVariables : MonoBehaviour
 
     public static void ResetVariables()
     {
+        //put back variable to default state
         numOfHitsForLvl = 0;
         playerScores.Clear();
     }

@@ -37,6 +37,8 @@ public class playerNetwork : NetworkBehaviour
     void Start()
     {
 
+
+        //if it's the server player, when a ball is created send the color list
         if (IsServer)
         {
             SendColorsToClientRpc(colors.ToArray());
@@ -46,7 +48,7 @@ public class playerNetwork : NetworkBehaviour
 
 
 
-
+        //Set the ball color to the list of colors if it's more players than the list size then change to white
         try
         {
             this.gameObject.GetComponentInChildren<SpriteRenderer>().color = colors[(int)OwnerClientId];
@@ -59,6 +61,8 @@ public class playerNetwork : NetworkBehaviour
 
 
         StartCoroutine(UpdateCamera());
+
+
         StartCoroutine(UpdateColor());
 
     }
@@ -77,12 +81,13 @@ public class playerNetwork : NetworkBehaviour
     {
         while (true)
         {
-
+            //make sure this is in the menu
             if (colorPick != null)
             {
-
+                //make it act only for the locallayer and not for "unowned" balls
                 if (IsLocalPlayer)
                 {
+                    //sent to the server the color chosen by the player 
                     SentColorsToServerRpc(colorPick.GetColor());
                 }
             }
@@ -94,8 +99,10 @@ public class playerNetwork : NetworkBehaviour
 
     IEnumerator UpdateCamera()
     {
+        //simply make the camera follow the player
         while (true)
         {
+            //set the color of the balls
             if (SceneManager.GetActiveScene().name.Equals("Menu") && colorPick == null)
             {
                 colorPick = GameObject.FindObjectOfType<FlexibleColorPicker>();
@@ -134,7 +141,7 @@ public class playerNetwork : NetworkBehaviour
     {
 
 
-
+        //The server sends to the clients the updated list of colors
         colors = modifiedColors.ToList();
 
 
@@ -145,11 +152,12 @@ public class playerNetwork : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     void SentColorsToServerRpc(Color color)
     {
+        //the server adds the received colored from the clients to it's local list to then send the list back to the clients
 
         List<Color> modifiedColors = colors;
 
 
-
+        //if the id already exists simply update that color otherwise create a new item in the list
         try
         {
             modifiedColors[(int)OwnerClientId] = color;
@@ -158,7 +166,6 @@ public class playerNetwork : NetworkBehaviour
         catch
         {
             modifiedColors.Add(color);
-            modifiedColors[(int)OwnerClientId] = color;
             SendColorsToClientRpc(modifiedColors.ToArray());
         }
 

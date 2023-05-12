@@ -12,6 +12,7 @@ public class LevelSpawn : NetworkBehaviour
 
     void Start()
     {
+        //make the player start where needed for that level
         List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList();
         players.ForEach(player =>
         {

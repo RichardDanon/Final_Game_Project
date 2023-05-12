@@ -8,14 +8,10 @@ public class ScoreUpdate : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI scoreTMP;
 
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        //Update every frame for the number of hits done by the player
         if (GlobalVariables.playerScores.TryGetValue(SceneManager.GetActiveScene().name, out int hits))
         {
             GlobalVariables.playerScores[SceneManager.GetActiveScene().name] = GlobalVariables.numOfHitsForLvl;

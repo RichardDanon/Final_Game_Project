@@ -50,11 +50,12 @@ public class hitBall : NetworkBehaviour
         {
             if (this.gameObject != null && Camera.main != null)
             {
+                //determine direction of hit
                 Vector2 directionOfHit = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.gameObject.transform.position;
 
                 float strengthOfHit = Mathf.Clamp(Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)), 0, maxDragLength);
                 Vector2 endPos = (Vector2)transform.position + (directionOfHit.normalized * strengthOfHit);
-
+                //check if ball is moving so ball cant be hit while moving
                 if (rb2d.velocity.magnitude < 0.05f)
                 {
                     isMoving = false;
@@ -69,7 +70,7 @@ public class hitBall : NetworkBehaviour
 
                 if (!isMoving)
                 {
-
+                    //draw line for how strong ball is hit
 
                     lineRenderer.SetPosition(1, endPos);
 
@@ -79,8 +80,9 @@ public class hitBall : NetworkBehaviour
 
                     if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
                     {
+                        //calculate force of hit
                         float force = (Vector2.Distance(this.gameObject.transform.position, endPos) * 100 / maxDragLength);
-
+                        //add force to the direction determined higher up
                         rb2d.AddForce(5 * force * -(endPos - (Vector2)transform.position).normalized);
                         GlobalVariables.numOfHitsForLvl++;
                     }
