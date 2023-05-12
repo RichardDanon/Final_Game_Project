@@ -12,13 +12,10 @@ public class BarrelExploding : NetworkBehaviour
     private float explosionRadius = 5f;
 
 
-    private AudioSource audioSource;
-
     void Start()
     {
         anim = GetComponent<Animator>();
         anim.enabled = false;
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -64,8 +61,6 @@ public class BarrelExploding : NetworkBehaviour
         }
 
 
-        audioSource.Play();
-
         Destroy(anim.gameObject, 0.5f);
         StartCoroutine(despawnObject());
     }
@@ -76,6 +71,6 @@ public class BarrelExploding : NetworkBehaviour
 
         NetworkObject.Despawn(gameObject);
     }
-    
+
 }
 
