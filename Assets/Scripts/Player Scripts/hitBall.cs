@@ -13,6 +13,10 @@ public class hitBall : NetworkBehaviour
 
     LineRenderer lineRenderer;
 
+    //Audio
+    public AudioClip hitSound;
+    private AudioSource audioSource;
+
     [SerializeField]
     private Material lineMaterial;
 
@@ -22,6 +26,10 @@ public class hitBall : NetworkBehaviour
     {
 
         rb2d = gameObject.GetComponent<Rigidbody2D>();
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        hitSound = Resources.Load<AudioClip>("Hit");
+        audioSource.clip = hitSound;
 
         if (IsLocalPlayer)
         {
@@ -85,6 +93,7 @@ public class hitBall : NetworkBehaviour
                         //add force to the direction determined higher up
                         rb2d.AddForce(5 * force * -(endPos - (Vector2)transform.position).normalized);
                         GlobalVariables.numOfHitsForLvl++;
+                        audioSource.Play();
                     }
                 }
 
