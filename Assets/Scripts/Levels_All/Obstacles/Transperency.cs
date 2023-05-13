@@ -29,14 +29,14 @@ public class Transperency : MonoBehaviour
     {
         if (_isTransparent)
         {
-            for (var x = -10; x <= 10; x++)
-                for (var y = -10; y <= 10; y++)
+            for (var x = -28; x <= -27; x++)
+                for (var y = 15; y <= 6; y++)
                     ChangeTransparency(x, y, 0.3f);
         }
         else
         {
-            for (var x = -10; x <= 10; x++)
-                for (var y = -10; y <= 10; y++)
+            for (var x = -28; x <= -27; x++)
+                for (var y = 15; y <= 6; y++)
                     ChangeTransparency(x, y, 1f);
         }
     }
