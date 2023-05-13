@@ -7,7 +7,7 @@ public class PauseScript : NetworkBehaviour
 {
 
     [SerializeField]
-    private GameObject canvas;
+    private GameObject canvas, volumeMenu;
 
     [SerializeField]
     Slider volumeSlider;

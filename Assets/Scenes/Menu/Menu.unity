@@ -754,7 +754,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164806870}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!1 &190791967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,6 +1074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1695429679}
+  volumeMenu: {fileID: 41246354}
   volumeSlider: {fileID: 1808935474}
   mute: {fileID: 1957735462}
 --- !u!1 &429845489
@@ -3984,7 +3985,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811613204}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!1 &1885305185
 GameObject:
   m_ObjectHideFlags: 0
@@ -4060,7 +4061,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885305185}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!1 &1940142125
 GameObject:
   m_ObjectHideFlags: 0
