@@ -1376,7 +1376,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2648376253c5942ad99442adaf7644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 783951944}
+  canvas1: {fileID: 783951944}
+  canvas2: {fileID: 0}
+  volumeSlider: {fileID: 0}
+  mute: {fileID: 0}
 --- !u!1 &1993863288
 GameObject:
   m_ObjectHideFlags: 0
