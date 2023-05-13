@@ -5,50 +5,53 @@ using UnityEngine.Tilemaps;
 
 public class Transperency : MonoBehaviour
 {
-    // Start is called before the first frame update
     Tilemap _graphicMap;
-    bool _isTransparent = false;
+    bool isTriggered = false;
 
     void Start()
     {
+        // Find the TransparentThings object and get the Tilemap component
         var go = GameObject.Find("TransparentThings");
         _graphicMap = go.GetComponent<Tilemap>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        _isTransparent = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        _isTransparent = false;
-    }
-
-    private void Update()
-    {
-        if (_isTransparent)
+        if (collision.CompareTag("Player"))
         {
-            for (var x = -28; x <= -27; x++)
-                for (var y = 15; y <= 6; y++)
-                    ChangeTransparency(x, y, 0.3f);
+            isTriggered = true;
+            ChangeTransparency();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isTriggered = false;
+            ChangeTransparency();
+        }
+    }
+
+    public void ChangeTransparency()
+    {
+        Color color = Color.white;
+
+        if (isTriggered)
+        {
+            color.a = 0.3f; // Set the transparency to 0.3
         }
         else
         {
-            for (var x = -28; x <= -27; x++)
-                for (var y = 15; y <= 6; y++)
-                    ChangeTransparency(x, y, 1f);
+            color.a = 1f; // Set the transparency to 1 (fully opaque)
         }
-    }
 
-    public void ChangeTransparency(int x, int y, float alpha)
-    {
-        var pos = new Vector3Int(x, y);
+        // Loop through all the tiles in the Tilemap and change their transparency
+        foreach (var pos in _graphicMap.cellBounds.allPositionsWithin)
+        {
+            _graphicMap.SetTileFlags(pos, TileFlags.None);
 
-        var color = new Color(1, 1, 1, alpha);
-
-        _graphicMap.SetTileFlags(pos, TileFlags.None);
-
-        _graphicMap.SetColor(pos, color);
+            _graphicMap.SetColor(pos, color);
+        }
     }
 }
