@@ -5,23 +5,14 @@ using UnityEngine;
 public class Spinning : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float spinSpeed = 10f;
-
     [SerializeField]
-    private Rigidbody rb;
+    private float rotationSpeed = 10f;
 
-    void Start()
+    private void Update()
     {
-        rb = GetComponent<Rigidbody>();
+        Quaternion newRotation = transform.rotation * Quaternion.Euler(0f, 0f, rotationSpeed * Time.deltaTime);
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // Make sure the object is not affected by gravity
-        rb.useGravity = false;
-
-        rb.angularVelocity = Vector3.up * spinSpeed;
+        // Apply the new rotation
+        transform.rotation = newRotation;
     }
 }
