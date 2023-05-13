@@ -11,6 +11,10 @@ public class ScoreUpdate : MonoBehaviour
 
     void Update()
     {
+        if (GlobalVariables.playerScores.ContainsKey("Tutorial"))
+        {
+            GlobalVariables.playerScores.Remove("Tutorial");
+        }
         //Update every frame for the number of hits done by the player
         if (GlobalVariables.playerScores.TryGetValue(SceneManager.GetActiveScene().name, out int hits))
         {

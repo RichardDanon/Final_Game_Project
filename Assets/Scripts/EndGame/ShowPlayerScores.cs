@@ -86,9 +86,14 @@ public class ShowPlayerScores : NetworkBehaviour
             int total = 0;
             foreach (int x in player.Value.Values)
             {
+                if (player.Value.ContainsKey("Tutorial"))
+                {
+                    player.Value.Remove("Tutorial");
+                }
                 //make sure the player played all levels
                 if (player.Value.Count == numOfLevels)
                 {
+
                     total += x;
                 }
                 else
