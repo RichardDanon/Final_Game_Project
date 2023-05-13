@@ -7,8 +7,19 @@ public class Transperency : MonoBehaviour
 {
 
     [SerializeField]
-    private Tilemap _graphicMap; // Reference to the Tilemap component
+    private Tilemap _graphicMap; 
+    // Reference to the Tilemap component
+    [SerializeField]
+    private int _minX = -10; // Minimum x coordinate for transparency change
 
+    [SerializeField]
+    private int _maxX = 10; // Maximum x coordinate for transparency change
+
+    [SerializeField]
+    private int _minY = -10; // Minimum y coordinate for transparency change
+
+    [SerializeField]
+    private int _maxY = 10; // Maxiximum y coordinate for transparency change
     void Start()
     {
 
@@ -16,9 +27,9 @@ public class Transperency : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        for (var x = -28; x <= 28; x++)
+        for (var x = _minX; x <= _maxX; x++)
         {
-            for (var y = -16; y <= 16; y++)
+            for (var y = _minY; y <= _maxY; y++)
             {
                 ChangeTransparency(x, y);
             }
@@ -26,9 +37,9 @@ public class Transperency : MonoBehaviour
     }
     public void OnTriggerExit2D(Collider2D collision)
     {
-        for (var x = -28; x <= 28; x++)
+        for (var x = _minX; x <= _maxX; x++)
         {
-            for (var y = -16; y <= 15; y++)
+            for (var y = _minY; y <= _maxY; y++)
             {
                 RevertTransparency(x, y);
             }
