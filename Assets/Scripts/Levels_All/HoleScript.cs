@@ -28,6 +28,10 @@ public class HoleScript : NetworkBehaviour
                 collision.gameObject.GetComponent<playerNetwork>().IsLevelCompleted = true;
                 float resistance = Mathf.Lerp(0f, 1f, collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude / (collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude / 1000f));
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(-collision.gameObject.GetComponent<Rigidbody2D>().velocity * resistance);
+
+                // Play the "Falling" sound clip
+                AudioSource.PlayClipAtPoint(Resources.Load<AudioClip>("Falling"), transform.position);
+
                 IsCompleteed_ServerRpc();
                 GlobalVariables.playerScores[SceneManager.GetActiveScene().name] = GlobalVariables.numOfHitsForLvl;
             }
