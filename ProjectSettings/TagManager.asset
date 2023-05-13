@@ -8,6 +8,7 @@ TagManager:
   - ColorPicker
   - Header
   - Hole
+  - TransparentThings
   layers:
   - Default
   - TransparentFX
