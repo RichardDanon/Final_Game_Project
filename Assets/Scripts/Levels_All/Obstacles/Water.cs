@@ -6,6 +6,8 @@ public class Water : MonoBehaviour
 {
     [SerializeField]
     private float x, y;
+    [SerializeField]
+    GameObject waterPrefab;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -13,19 +15,19 @@ public class Water : MonoBehaviour
 
         if (playerRb.velocity.magnitude < 0.75f)
         {
-            collision.transform.position = new Vector2(x, y);
-            playerRb.velocity = new Vector2(0, 0);
+            GameObject splash = Instantiate(waterPrefab, collision.transform.position, collision.transform.rotation);
+            StartCoroutine(WaterAnim(collision, playerRb, splash));
         }
     }
-    // Start is called before the first frame update
-    void Start()
+
+    IEnumerator WaterAnim(Collider2D collision, Rigidbody2D playerRb, GameObject splash)
     {
-        
+        yield return new WaitForSeconds(1f);
+
+        collision.transform.position = new Vector2(x, y);
+        playerRb.velocity = new Vector2(0, 0);
+        Destroy(splash);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
