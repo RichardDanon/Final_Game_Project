@@ -21,7 +21,7 @@ public class ScoreUpdate : MonoBehaviour
             GlobalVariables.playerScores[SceneManager.GetActiveScene().name] = GlobalVariables.numOfHitsForLvl;
         }
 
-        scoreTMP.text = string.Join("\n", GlobalVariables.playerScores.Select(d => string.Format("{0}: \n Strokes {1}", d.Key, d.Value)));
+        scoreTMP.text = string.Join("\n", GlobalVariables.playerScores.OrderBy(i => i.Key).Select(d => string.Format("{0}: \n Strokes {1}", d.Key, d.Value)));
 
     }
 }
