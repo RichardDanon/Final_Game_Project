@@ -9608,7 +9608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   x: -6
-  y: 5
+  y: 2.85
   waterPrefab: {fileID: 5305689219437916863, guid: 3c3f28a321c9fa546b29a97c0d98a90d, type: 3}
 --- !u!19719996 &827384477
 TilemapCollider2D:
