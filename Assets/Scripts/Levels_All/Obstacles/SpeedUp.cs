@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeedUp : MonoBehaviour
@@ -7,7 +5,7 @@ public class SpeedUp : MonoBehaviour
     private Rigidbody2D player;
 
     [SerializeField]
-    private float speed = 300;
+    private float speed = 150;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
