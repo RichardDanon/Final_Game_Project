@@ -91,7 +91,7 @@ public class hitBall : NetworkBehaviour
                         //calculate force of hit
                         float force = (Vector2.Distance(this.gameObject.transform.position, endPos) * 100 / maxDragLength);
                         //add force to the direction determined higher up
-                        rb2d.AddForce(5 * force * -(endPos - (Vector2)transform.position).normalized);
+                        rb2d.AddForce(6.5 * force * -(endPos - (Vector2)transform.position).normalized);
                         GlobalVariables.numOfHitsForLvl++;
                         audioSource.Play();
                     }

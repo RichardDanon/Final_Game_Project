@@ -36,7 +36,7 @@ public class onSand : MonoBehaviour
             {
                 if (player.velocity.magnitude != 0)
                 {
-                    float resistance = Mathf.Lerp(0f, 1f, player.velocity.magnitude / (player.velocity.magnitude / 1000f));
+                    float resistance = Mathf.Lerp(0f, 1f, player.velocity.magnitude / (player.velocity.magnitude / 800f));
                     player.AddForce(-player.velocity * resistance);
                 }
             }
