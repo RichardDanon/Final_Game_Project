@@ -7,7 +7,7 @@ public class PauseScript : NetworkBehaviour
 {
 
     [SerializeField]
-    private GameObject canvas1, canvas2;
+    private GameObject pauseMenu, volumeCanvas;
 
     [SerializeField]
     Slider volumeSlider;
@@ -26,12 +26,12 @@ public class PauseScript : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            canvas1.SetActive(!canvas1.activeSelf);
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
             foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
             {
                 if (player.GetComponent<playerNetwork>().IsLocalPlayer)
                 {
-                    player.GetComponent<hitBall>().enabled = !canvas1.activeSelf;
+                    player.GetComponent<hitBall>().enabled = !pauseMenu.activeSelf;
                 }
             }
         }
@@ -41,7 +41,7 @@ public class PauseScript : NetworkBehaviour
 
     public void Resume()
     {
-        canvas1.SetActive(false);
+        pauseMenu.SetActive(false);
 
         foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
         {

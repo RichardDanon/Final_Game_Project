@@ -38580,8 +38580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2648376253c5942ad99442adaf7644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas1: {fileID: 1134735746}
-  canvas2: {fileID: 818589687}
+  pauseMenu: {fileID: 1134735746}
+  volumeCanvas: {fileID: 818589687}
   volumeSlider: {fileID: 818589688}
   mute: {fileID: 818589689}
 --- !u!114 &2063318108
