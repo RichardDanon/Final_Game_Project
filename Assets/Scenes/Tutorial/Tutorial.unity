@@ -304,6 +304,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2442748644055727950, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1733141060}
+    - target: {fileID: 2442748644055727950, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Resume
+      objectReference: {fileID: 0}
     - target: {fileID: 2442748644072564581, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
       propertyPath: m_Name
       value: PauseUI
@@ -315,7 +323,7 @@ PrefabInstance:
     - target: {fileID: 2442748644072564600, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1520687351}
     - target: {fileID: 2442748644072564601, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -400,10 +408,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2442748645457082203, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1733141060}
+    - target: {fileID: 2442748645457082203, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Disconnect
+      objectReference: {fileID: 0}
     - target: {fileID: 3058724342236607773, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1733141060}
     - target: {fileID: 3058724342236607773, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Quit
