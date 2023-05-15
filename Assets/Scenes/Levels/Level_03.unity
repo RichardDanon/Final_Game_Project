@@ -31967,6 +31967,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PauseScript, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 3950120029376248540, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 381.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950120029376248540, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 90.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950120029376248540, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 44.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950120029376248540, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -21.07
+      objectReference: {fileID: 0}
     - target: {fileID: 8086228709186098647, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2

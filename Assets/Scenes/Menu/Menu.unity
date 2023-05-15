@@ -747,8 +747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2648376253c5942ad99442adaf7644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas1: {fileID: 1695429679}
-  canvas2: {fileID: 3435824782386163627}
+  canvas1: {fileID: 0}
+  canvas2: {fileID: 0}
   volumeSlider: {fileID: 1808935474}
   mute: {fileID: 1957735462}
 --- !u!1 &469433547
@@ -3901,6 +3901,22 @@ PrefabInstance:
     - target: {fileID: 3058724342236607773, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950120029376248540, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 429.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950120029376248540, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 94.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950120029376248540, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950120029376248540, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -27
       objectReference: {fileID: 0}
     - target: {fileID: 5020035602196345424, guid: 18377a9d2b5ab0d43a59c4fcfe063ad8, type: 3}
       propertyPath: m_SizeDelta.x
